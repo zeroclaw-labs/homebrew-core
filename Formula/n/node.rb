@@ -4,6 +4,7 @@ class Node < Formula
   url "https://nodejs.org/dist/v25.6.1/node-v25.6.1.tar.xz"
   sha256 "cf756781c8b4dc5ee030f87ddf9d51b8d5bf219ad56cbd9855c4a3bdc832c78e"
   license "MIT"
+  revision 1
   head "https://github.com/nodejs/node.git", branch: "main"
 
   livecheck do
