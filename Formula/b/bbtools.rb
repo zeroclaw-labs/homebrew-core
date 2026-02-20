@@ -1,8 +1,8 @@
 class Bbtools < Formula
   desc "Brian Bushnell's tools for manipulating reads"
   homepage "https://bbmap.org/"
-  url "https://downloads.sourceforge.net/bbmap/BBMap_39.75.tar.gz"
-  sha256 "a5bf0c4d63b8effa02c9f6cd88309cb3c402dcfde129c57506efecec7fc5bbae"
+  url "https://downloads.sourceforge.net/bbmap/BBMap_39.76.tar.gz"
+  sha256 "f1f8c38f09b6014c4d9e05e7585197806f6153d93624fe8045e9c26502745d41"
   license "BSD-3-Clause"
 
   bottle do
@@ -21,7 +21,7 @@ class Bbtools < Formula
       rm Dir["libbbtoolsjni.*", "*.o"]
       system "make", "-f", OS.mac? ? "makefile.osx" : "makefile.linux"
     end
-    libexec.install %w[current jni resources]
+    libexec.install %w[jni resources]
     libexec.install Dir["*.sh"]
     bin.install Dir[libexec/"*.sh"]
     bin.env_script_all_files(libexec, Language::Java.overridable_java_home_env)
