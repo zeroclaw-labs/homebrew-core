@@ -1,18 +1,18 @@
 class Nmail < Formula
   desc "Terminal-based email client for Linux and macOS"
   homepage "https://github.com/d99kris/nmail"
-  url "https://github.com/d99kris/nmail/archive/refs/tags/v5.10.3.tar.gz"
-  sha256 "a667b410a865eef7fb08ca9afceebf6a9a85c61850df875005255a88960c5158"
+  url "https://github.com/d99kris/nmail/archive/refs/tags/v5.11.4.tar.gz"
+  sha256 "452922112dd19770b06cee61c8bd6fc34899c5b3727a275f8d7c1de6b372fd74"
   license "MIT"
   head "https://github.com/d99kris/nmail.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "2e9d07e160b98ddd1f0bbc113de3b91460ed9515754ed07d80777bf46592507d"
-    sha256 cellar: :any,                 arm64_sequoia: "e182f0e1323992af8ddc83fd5dac87565d29d454de9200a3b36f584eab7ade07"
-    sha256 cellar: :any,                 arm64_sonoma:  "4636c97fafd045eef26b33f72a3a22406f4fd53c5f32b72148d6c8f4d6dfdb2d"
-    sha256 cellar: :any,                 sonoma:        "1923bcc5a6e28f585f4c23f158415865e9b49ce970423fd16a4104d734d7dc96"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "edc6b2f46d42887d69bd9566b022ccf4548d664cb932844ac354d53b3aad0fce"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "20a755e09c43cc399166abfcc3993840c0fb064244d2444c53c2b5605e3a227d"
+    sha256 cellar: :any,                 arm64_tahoe:   "f3f42a9316052846dde1abf3f11c03d5948dc880143776c56ca34df08c17e4f5"
+    sha256 cellar: :any,                 arm64_sequoia: "1bdfe5c1b854fe9f2ecf0ac9b7b9e00f83a40b27d17290f2ec9b433f75e93873"
+    sha256 cellar: :any,                 arm64_sonoma:  "b7fe5c9de9ce4e486102c52b7046696ad3b18c5d1aebc116ced84488ac361729"
+    sha256 cellar: :any,                 sonoma:        "90f1406f200984148625141dbf780aaadb34e8d33116834ad9b38d8dd5ee9a9d"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "020412551cd3c47c1fffe064f6dd6419f782160d39aa98436ea9dab68ecb47e7"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d3c9ecffc598208c6c399d1cd28cbfcb093da8bba5d925e9294afcb304322f3e"
   end
 
   depends_on "cmake" => :build
@@ -32,6 +32,9 @@ class Nmail < Formula
   end
 
   def install
+    # Workaround for xapian >= 2.0.0 which needs C++17
+    inreplace "CMakeLists.txt", "set(CMAKE_CXX_STANDARD 14)", "set(CMAKE_CXX_STANDARD 17)"
+
     args = []
     # Workaround to use uuid from Xcode CLT
     args << "-DLIBUUID_LIBRARIES=System" if OS.mac?

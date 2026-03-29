@@ -1,23 +1,23 @@
 class Promtail < Formula
   desc "Log agent for Loki"
   homepage "https://grafana.com/loki"
-  url "https://github.com/grafana/loki/archive/refs/tags/v3.6.6.tar.gz"
-  sha256 "de62ccf933e49a8db7cd3d375a28c69c2d66b0c2b64432cc6042f9137ad427b1"
+  url "https://github.com/grafana/loki/archive/refs/tags/v3.7.1.tar.gz"
+  sha256 "05c5d23eff751b9c4f4e49918359e35b7ba840a5b504e3eac0befe4ad94ad464"
   license "AGPL-3.0-only"
   head "https://github.com/grafana/loki.git", branch: "main"
 
-  livecheck do
-    formula "loki"
+  bottle do
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "7a74a587ac2ad98fab5c9f2798153e921fa6b2fac6d7f6ab577160a9f76baaf9"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "a15c057482a418fe5f1c6a6f396f6f41badbdd92e75b6f299c9476eb7bee9b3a"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "3c0faf97cabfa8ff7a4f3800bd0ea62046c7c2c888b91a798620d698a522a53d"
+    sha256 cellar: :any_skip_relocation, sonoma:        "e012b34304d8e2ba3d59b3f152b0d02c268edb5a6d4dd74afed37305988eb019"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "cb9dcd94e00bb629e7e44a1c7549c578e785fff136c52e32eccf3bdfcd4fc2ba"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f4d0320e85e8108f455108d5b108769177e3f277ad7896d73e8765d4a56be555"
   end
 
-  bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "b951df08c47eef86cf17b498e7be9f1cacd0e319e2704999f15cc8e4a5172d26"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "7cf9080ad6c5689a48362d150b378b770dd4d54f2f49aeaa1b676f48ea185265"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "356b95c7b12f35d12d186c5631ba14307a68343474729f3fe94efa19af2939b9"
-    sha256 cellar: :any_skip_relocation, sonoma:        "092d0f703f41927515d13bbdfa2b769f0258e12d483a227adc2c38ab6202ac41"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "bb86dccfd14e9de7eaee8156c5023b61d612e94e0d5784be498c31cde4eb97b0"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "3faf69d64967e6eea470e9cd1e827f8a59c47957ae0d0c8d3ae837edd3f9e205"
-  end
+  # Promtail is deprecated/eol and upstream removed code: https://github.com/grafana/loki/pull/21245
+  deprecate! date: "2026-03-02", because: :repo_removed
+  disable! date: "2026-03-02", because: :repo_removed
 
   depends_on "go" => :build
 

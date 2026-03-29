@@ -1,9 +1,10 @@
 class Libpq < Formula
   desc "Postgres C API library"
   homepage "https://www.postgresql.org/docs/current/libpq.html"
-  url "https://ftp.postgresql.org/pub/source/v18.2/postgresql-18.2.tar.bz2"
-  sha256 "5245bd1b79700d55b8e0575be0325ef61e7bbef627e6a616e4cf36ad4687be36"
+  url "https://ftp.postgresql.org/pub/source/v18.3/postgresql-18.3.tar.bz2"
+  sha256 "d95663fbbf3a80f81a9d98d895266bdcb74ba274bcc04ef6d76630a72dee016f"
   license "PostgreSQL"
+  compatibility_version 1
 
   livecheck do
     url "https://ftp.postgresql.org/pub/source/"
@@ -11,12 +12,13 @@ class Libpq < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "6a62698c8a7f67547b16eb63e4e32ee020b1abbe1fccd1f158218038244e413f"
-    sha256 arm64_sequoia: "8a0543dfd0685c3f9ba23e8fdf612b8b67c450511096ac87cef00c34accc75de"
-    sha256 arm64_sonoma:  "6db92a3dcdb28640e55f1c6d37c803654ede3bed0e0337da5c26fd98399b1f58"
-    sha256 sonoma:        "b136439c0b56ba81b86592e036a0571cf4407860cc5916cdb4c427d96901f492"
-    sha256 arm64_linux:   "67b9e9c2335e23a8b8a9090462464dfc988949f29e2d42525c6b0541a3c41829"
-    sha256 x86_64_linux:  "987c057b568e0c2dc724f696dea994cad48678103d3684f85ba3c9a1265a6518"
+    rebuild 1
+    sha256 arm64_tahoe:   "f96594ae6831348bebbd5ecdd97ed172b483f1790da9d3a034faf5e0eff19827"
+    sha256 arm64_sequoia: "6e25a04f5a7a52d71afac60bffe3d33a0a598946e85f714a7972c76641f80833"
+    sha256 arm64_sonoma:  "606ce0195cff8fd82a137d9d171efd9c92f3be85cccb5efd2fe7c18b5f9f54c1"
+    sha256 sonoma:        "b224f61433551dc0376cbbf36de587764f54f7d3edd7dc2a03c3b1a1e4e96faa"
+    sha256 arm64_linux:   "0522b3a485c9ef1735dc99df1d4e7504905a14453e36bb67969b96a8d3240464"
+    sha256 x86_64_linux:  "73c9af232d61f649aea14aa1153ccb742af9d12bd4f8cd7c4124bc6fd3a1af25"
   end
 
   keg_only "it conflicts with PostgreSQL"
@@ -34,6 +36,7 @@ class Libpq < Formula
   uses_from_macos "flex" => :build
   uses_from_macos "libxml2" => :build
   uses_from_macos "libxslt" => :build # for xsltproc
+  uses_from_macos "curl"
 
   on_linux do
     depends_on "readline"
@@ -47,6 +50,7 @@ class Libpq < Formula
     system "./configure", "--disable-debug",
                           "--prefix=#{prefix}",
                           "--with-gssapi",
+                          "--with-libcurl",
                           "--with-openssl",
                           "--libdir=#{opt_lib}",
                           "--includedir=#{opt_include}"

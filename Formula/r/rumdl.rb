@@ -1,8 +1,8 @@
 class Rumdl < Formula
   desc "Markdown Linter and Formatter written in Rust"
   homepage "https://github.com/rvben/rumdl"
-  url "https://github.com/rvben/rumdl/archive/refs/tags/v0.1.25.tar.gz"
-  sha256 "92b62b02bb921f38708d41d4cd29d60a2860e5c9d341158d6e2eb7e30f51ed1a"
+  url "https://github.com/rvben/rumdl/archive/refs/tags/v0.1.62.tar.gz"
+  sha256 "004108fcc94d9bdbd2c6b6da68f2eb8bd4eac0b0349d9a759b02f13caf5861c3"
   license "MIT"
 
   livecheck do
@@ -11,18 +11,19 @@ class Rumdl < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "d78baf0ae36a9fc80f76cd4683a2f9c4e207a774cc144572232bd9e5600b3837"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "ff574923d0c6bdc17bf18e5860068b6d30cd0315c7a09942478f8f35847f8cef"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "b41f4d22f22e90b64b0ce07840d8a3ad07fd5b8262ac43b839a4ac3bce3c3533"
-    sha256 cellar: :any_skip_relocation, sonoma:        "7b5291e8e792406122504c7d0e965241f3397f6a6e90ae97ea0e9bd15b83f926"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "3ea8913805b47af46895fe0f195139bcac7295ffa6fa8dc65921b0cd96b8c48a"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c11f08da4c3de81fc7d9f879acb551cad26cb13da14002fc15038449abcd3a73"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "eee39900deff999bc916e57faf0e01d3d2b10dfcef0ccc12dc21e02f2ecf35ec"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "c81e4ac19841988c3e9bb16b661c5784b19886df7a345d51f671a83aa5396aeb"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "bcc69c5138403cd922e7e3f34bdee2436df8d7a3f48c23a323667ff234e1191b"
+    sha256 cellar: :any_skip_relocation, sonoma:        "6e10ce5aecd8485dde14cab02fc7b540908718b26a72a0adf3793e0b24ce0651"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "dea7dc45b0d9262787e5137528aecd3d07c89537f3e99d623dc33f7aa5b77277"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a05e3d0442b5fe492e0f7813d105190e3a1bda615d7ea2d25f9ed0a6f62ee59c"
   end
 
   depends_on "rust" => :build
 
   def install
     system "cargo", "install", *std_cargo_args
+    generate_completions_from_executable(bin/"rumdl", "completions")
   end
 
   test do

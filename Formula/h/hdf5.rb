@@ -1,11 +1,11 @@
 class Hdf5 < Formula
   desc "File format designed to store large amounts of data"
   homepage "https://www.hdfgroup.org/solutions/hdf5/"
-  url "https://github.com/HDFGroup/hdf5/releases/download/2.0.0/hdf5-2.0.0.tar.gz"
-  sha256 "f4c2edc5668fb846627182708dbe1e16c60c467e63177a75b0b9f12c19d7efed"
+  url "https://github.com/HDFGroup/hdf5/releases/download/2.1.1/hdf5-2.1.1.tar.gz"
+  sha256 "efff93b5a904d66e8f626d7da60b5eedc9faf544be27dbabbaa87967b8ad798b"
   license "BSD-3-Clause"
-  revision 1
   version_scheme 1
+  compatibility_version 1
 
   # Upstream maintains multiple major/minor versions and the "latest" release
   # may be for a lower version, so we have to check multiple releases to
@@ -16,12 +16,12 @@ class Hdf5 < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "ae6cec3e48d2f3ace0027a8ae722494911048a9889bb2e0a6785687a3d0c2bd8"
-    sha256 cellar: :any,                 arm64_sequoia: "b023689b62eeab2d1be5c814d8877c24b70d09147c08441752ea836c4491c47b"
-    sha256 cellar: :any,                 arm64_sonoma:  "ac477526c4f5405c6bbdb81bdbff7bf7d9da42e40e0bbdfe3d48498caf8c803c"
-    sha256 cellar: :any,                 sonoma:        "09ff5ab1eff3f2b6767c2f52103418d31409c796d6cb7914d7a03e062f212012"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "e7e8b27ef73eda4843dd686e751bbb43ba096406209f06f099f94ba37e68e2e5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "46d20eb636a2295c21b7498d5a39ed30634df1b9a956bcae089ef0df7ec9f2e8"
+    sha256 cellar: :any,                 arm64_tahoe:   "114c9d8e9bea42989f21fb2910f29aa80906bd6924c6d332783d2b38c7a63419"
+    sha256 cellar: :any,                 arm64_sequoia: "c6fbf7bfe222ee75a8eec078486f0317e56d7d9c154f22dd135eceda927dfebf"
+    sha256 cellar: :any,                 arm64_sonoma:  "b5f41add9cb70b7f5325fef0be693a8433ea60b72b27acf70c68b043f5e2055e"
+    sha256 cellar: :any,                 sonoma:        "23e4bf63102a12668a5a1cf07e610a46ced3a917b818fa88592cf721dc7e87e1"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "55e6b9b7905a97cc4bb846368bc88f39f9717c8033cf9c2591d15b5b6e47e0a3"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e8e15df7406f1ae8ef07a41c86c8390a6bf931947becc7de20864206878ad86d"
   end
 
   depends_on "cmake" => :build

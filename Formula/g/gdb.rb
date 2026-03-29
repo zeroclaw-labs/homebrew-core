@@ -5,9 +5,8 @@ class Gdb < Formula
   mirror "https://ftp.gnu.org/gnu/gdb/gdb-17.1.tar.xz"
   sha256 "14996f5f74c9f68f5a543fdc45bca7800207f91f92aeea6c2e791822c7c6d876"
   license "GPL-3.0-or-later"
+  compatibility_version 1
   head "https://sourceware.org/git/binutils-gdb.git", branch: "master"
-
-  no_autobump! because: :requires_manual_review
 
   bottle do
     rebuild 1

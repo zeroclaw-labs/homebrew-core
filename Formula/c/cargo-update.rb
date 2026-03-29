@@ -1,18 +1,18 @@
 class CargoUpdate < Formula
   desc "Cargo subcommand for checking and applying updates to installed executables"
   homepage "https://github.com/nabijaczleweli/cargo-update"
-  url "https://github.com/nabijaczleweli/cargo-update/archive/refs/tags/v18.1.0.tar.gz"
-  sha256 "bea4c83f689756b8483faa3b32de1fb2a7730955717df72ee6ebf01cfd8ca4ea"
+  url "https://github.com/nabijaczleweli/cargo-update/archive/refs/tags/v19.0.0.tar.gz"
+  sha256 "1937584fc78fa340e63b0d8e5e26becbcda996fd2a97f7f75fc5fa3020689a3e"
   license "MIT"
   head "https://github.com/nabijaczleweli/cargo-update.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "e13f395b961b1bc9ccff775f2d36a744b6d8fa92980be44143391f5acaf9d87b"
-    sha256 cellar: :any,                 arm64_sequoia: "2670019f43c7967407156c65cd12977c3575c713847275f336ba06254301186f"
-    sha256 cellar: :any,                 arm64_sonoma:  "fb22189534df4de341181f41c3d09172ad57030c3b9dd33d81cfe03039acae73"
-    sha256 cellar: :any,                 sonoma:        "4ee36a18a1db17ff2ba0784a0c8b132e24f16c1169c16a4a2a8d47c07561fe03"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "ba4055d1bac857963d67d4cf590a89d615862a1b7b797c01f6b758e31e8ef318"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "123ffaa1e55d375731036778b1082dd62a7e04856821f7e24687c06a764e12b2"
+    sha256 cellar: :any,                 arm64_tahoe:   "e52a495839250cc5e180b466e01505bef8056e66946331c6c00baa8e196d8eae"
+    sha256 cellar: :any,                 arm64_sequoia: "f2cd85a0da9c9536e855fcb8182c96b4247a1ea57ab9c51c235948762e680b4f"
+    sha256 cellar: :any,                 arm64_sonoma:  "e42998e8a0de79885c60d509855e450c9af4b3a32976036bded0f856ac94aa10"
+    sha256 cellar: :any,                 sonoma:        "e49d7150139efd348e152d29f12d0c1dca62734ecf3821503ddb996d7c23bd15"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "5f44d4fba414d0810aed74cbd986aa62d6417f60b55ca7f2bd7ea45f19eb5f2e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cb15663e791851f7effb309175f65f088a0fee4b0c509b2fcc9bf8a094cac544"
   end
 
   depends_on "pkgconf" => :build

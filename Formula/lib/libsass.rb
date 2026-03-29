@@ -5,14 +5,13 @@ class Libsass < Formula
       tag:      "3.6.6",
       revision: "7037f03fabeb2b18b5efa84403f5a6d7a990f460"
   license "MIT"
+  compatibility_version 1
   head "https://github.com/sass/libsass.git", branch: "master"
 
   livecheck do
     url :stable
     strategy :github_latest
   end
-
-  no_autobump! because: :requires_manual_review
 
   bottle do
     sha256 cellar: :any,                 arm64_tahoe:    "ed01028a87ef04e5dd829f40013f3db3cff5317e1cb0ee3f7ac9de135281cb61"

@@ -1,21 +1,23 @@
 class Picoruby < Formula
   desc "Smallest Ruby implementation for microcontrollers"
   homepage "https://picoruby.org"
-  url "https://github.com/picoruby/picoruby/archive/refs/tags/3.0.2.tar.gz"
-  sha256 "33b951be8969570726bc34632fa5e0f332ee6e8ed782b5ec0f8fd5629a6be959"
+  url "https://github.com/picoruby/picoruby.git",
+      tag:      "3.4.2",
+      revision: "9b94521d56e6082793db861801546fc5808b5211"
   license "MIT"
   head "https://github.com/picoruby/picoruby.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "419ef195703d3c19a2bebaaa66bfc1d729a832a64a10a3e0a97b93a84eff074c"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "334066fe3a708a799b2495b24962c1f96aad0272822a210120522a489b8c6091"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "429d0c5f79cd22ef4ac5ed870a5a19756b3c090a94f808ed9ac41bb55c1b8a4d"
-    sha256 cellar: :any_skip_relocation, sonoma:        "45c96d98fbf69ef676359fa3f6362702420c537cd555031781a8fbe59097810e"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "dbf94a61a1dd5b6fb4f251c3a82301e8903815066572560d90e308bc7a8e84a7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cd416f436c2843b824f346ae05d591ce6e5ad02ed00948c23f1f66f3e1f4029b"
+    sha256 cellar: :any,                 arm64_tahoe:   "c0b959d579ccd02283e3a85e48d978960bab223849a5e8d8ce5bfcbb6beae197"
+    sha256 cellar: :any,                 arm64_sequoia: "f405aa5343d7cc6266a018a8984203554a60e1630dd0322371669a8ec4aacf8b"
+    sha256 cellar: :any,                 arm64_sonoma:  "a9c32939321321aa0f6f18888349abc2fb37f07e8ac948f1443b4b3ac445e656"
+    sha256 cellar: :any,                 sonoma:        "77a83c62f0a3845fb5e2c75d829ec1001d1a65742c89cf8d208cbdb4886ae3f8"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "f537dec966c24f54b234edd1854edb59c4b4c3f4c94fc126c10d563b51373d55"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c2770fe645257a1739d06f49c632c8bba23d9d06f794f883d783c85918bab9ec"
   end
 
-  uses_from_macos "ruby" => :build
+  depends_on "ruby" => :build # for numbered block parameter `_1'
+  depends_on "openssl@3"
 
   def install
     ENV["MRUBY_CONFIG"] = buildpath/"build_config/default.rb"

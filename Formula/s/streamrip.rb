@@ -6,25 +6,26 @@ class Streamrip < Formula
   url "https://files.pythonhosted.org/packages/b8/c9/6997772e0217f3081e4e692c7b8b104aaa564c008f2593341e81bbbd2396/streamrip-2.1.0.tar.gz"
   sha256 "e59b4b406f9ac77eb59c927a1a082644e0902152ffeb6212b6b24af7fbef5540"
   license "GPL-3.0-only"
-  revision 7
+  revision 8
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "7410e3c65b79df9f5b208ba8097f5552510d790c176ccbbdfd21726f58641a76"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "30224cdcaa8c3ca3e2556fc41b3abcf8c35ebbe906c8a30b5c2fe2ba006d4f14"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "50defc9faa77dd29727f9e043a17f22e97dbbae6f865bf940a2dfa6f9bd2e8b9"
-    sha256 cellar: :any_skip_relocation, sonoma:        "35ddef95f2e85edcb252d701b046f054307f40e8fc62759298ca942937e5b8e6"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "9a9e07cf21dd4e604991d45a8836a0fa79c37815eb23e4f0d180e98846b25fd2"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "97ef055ea54d754f48da23b5e4799c17b67eba27194803d40ce150eb5cd96f7b"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "2d2d7d846343781ed0accefb4b19228f3b967f1060d162a87ea1f7cf90d4a587"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "e0507a167912db00ea78a6b269ced5ed2b4f9ac72fe5eada8ad544b617b08a46"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "5319edac3d7d69fe7b2513a9672978fba0c221fe658be3766433c14a947abe35"
+    sha256 cellar: :any_skip_relocation, sonoma:        "f09c7339e015a6f21f552c64edb942b250db5b0c5a8f5ddd151e043466db5e5e"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "7a297d1d3ad20aff16e25ab100779eee39a190db0c149bb419b47c954406e275"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ae932b5dfdb94c44e6aa741d1d8af1b945a1bd024d0119c3b22d6f49b7a46bbc"
   end
 
   depends_on "certifi" => :no_linkage
+  depends_on "cffi" => :no_linkage
   depends_on "ffmpeg"
   depends_on "pillow" => :no_linkage
   depends_on "python@3.14"
 
   uses_from_macos "libffi"
 
-  pypi_packages exclude_packages: %w[certifi pillow pytest-asyncio pytest-mock],
+  pypi_packages exclude_packages: %w[certifi cffi pillow pytest-asyncio pytest-mock],
                 extra_packages:   "pygments"
 
   resource "aiodns" do
@@ -63,18 +64,13 @@ class Streamrip < Formula
   end
 
   resource "attrs" do
-    url "https://files.pythonhosted.org/packages/6b/5c/685e6633917e101e5dcb62b9dd76946cbb57c26e133bae9e0cd36033c0a9/attrs-25.4.0.tar.gz"
-    sha256 "16d5969b87f0859ef33a48b35d55ac1be6e42ae49d5e853b597db70c35c57e11"
-  end
-
-  resource "cffi" do
-    url "https://files.pythonhosted.org/packages/eb/56/b1ba7935a17738ae8453301356628e8147c79dbb825bcbc73dc7401f9846/cffi-2.0.0.tar.gz"
-    sha256 "44d1b5909021139fe36001ae048dbdde8214afa20200eda0f64c068cac5d5529"
+    url "https://files.pythonhosted.org/packages/9a/8e/82a0fe20a541c03148528be8cac2408564a6c9a0cc7e9171802bc1d26985/attrs-26.1.0.tar.gz"
+    sha256 "d03ceb89cb322a8fd706d4fb91940737b6642aa36998fe130a9bc96c985eff32"
   end
 
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/13/69/33ddede1939fdd074bce5434295f38fae7136463422fe4fd3e0e89b98062/charset_normalizer-3.4.4.tar.gz"
-    sha256 "94537985111c35f28720e43603b8e7b43a6ecfb2ce1d3058bbe955b73404e21a"
+    url "https://files.pythonhosted.org/packages/7b/60/e3bec1881450851b087e301bedc3daa9377a4d45f1c26aa90b0b235e38aa/charset_normalizer-3.4.6.tar.gz"
+    sha256 "1ae6b62897110aa7c79ea2f5dd38d1abca6db663687c0b1ad9aed6f6bae3d9d6"
   end
 
   resource "click" do
@@ -123,8 +119,8 @@ class Streamrip < Formula
   end
 
   resource "multidict" do
-    url "https://files.pythonhosted.org/packages/80/1e/5492c365f222f907de1039b91f922b93fa4f764c713ee858d235495d8f50/multidict-6.7.0.tar.gz"
-    sha256 "c6e99d9a65ca282e578dfea819cfa9c0a62b2499d8677392e09feaf305e9e6f5"
+    url "https://files.pythonhosted.org/packages/1a/c2/c2d94cbe6ac1753f3fc980da97b3d930efe1da3af3c9f5125354436c073d/multidict-6.7.1.tar.gz"
+    sha256 "ec6652a1bee61c53a3e5776b6049172c53b6aaba34f18c9ad04f82712bac623d"
   end
 
   resource "mutagen" do
@@ -147,11 +143,6 @@ class Streamrip < Formula
     sha256 "c863d9003ca0ce7df26429007859afd2a621d3276ed9fef154a9123db9252557"
   end
 
-  resource "pycparser" do
-    url "https://files.pythonhosted.org/packages/fe/cf/d2d3b9f5699fb1e4615c8e32ff220203e43b248e1dfcc6736ad9057731ca/pycparser-2.23.tar.gz"
-    sha256 "78816d4f24add8f10a06d6f05b4d424ad9e96cfebf68a4ddc99c65c0720d00c2"
-  end
-
   resource "pycryptodomex" do
     url "https://files.pythonhosted.org/packages/c9/85/e24bf90972a30b0fcd16c73009add1d7d7cd9140c2498a68252028899e41/pycryptodomex-3.23.0.tar.gz"
     sha256 "71909758f010c82bc99b0abf4ea12012c98962fbf0583c2164f8b84533c2e4da"
@@ -163,8 +154,8 @@ class Streamrip < Formula
   end
 
   resource "requests" do
-    url "https://files.pythonhosted.org/packages/c9/74/b3ff8e6c8446842c3f5c837e9c3dfcfe2018ea6ecef224c710c85ef728f4/requests-2.32.5.tar.gz"
-    sha256 "dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf"
+    url "https://files.pythonhosted.org/packages/34/64/8860370b167a9721e8956ae116825caff829224fbca0ca6e7bf8ddef8430/requests-2.33.0.tar.gz"
+    sha256 "c7ebc5e8b0f21837386ad0e1c8fe8b829fa5f544d8df3b2253bff14ef29d7652"
   end
 
   resource "rich" do
@@ -188,15 +179,11 @@ class Streamrip < Formula
   end
 
   resource "yarl" do
-    url "https://files.pythonhosted.org/packages/57/63/0c6ebca57330cd313f6102b16dd57ffaf3ec4c83403dcb45dbd15c6f3ea1/yarl-1.22.0.tar.gz"
-    sha256 "bebf8557577d4401ba8bd9ff33906f1376c877aa78d1fe216ad01b4d6745af71"
+    url "https://files.pythonhosted.org/packages/23/6e/beb1beec874a72f23815c1434518bfc4ed2175065173fb138c3705f658d4/yarl-1.23.0.tar.gz"
+    sha256 "53b1ea6ca88ebd4420379c330aea57e258408dd0df9af0992e5de2078dc9f5d5"
   end
 
   def install
-    # hatch does not support a SOURCE_DATE_EPOCH before 1980.
-    # Remove after https://github.com/pypa/hatch/pull/1999 is released.
-    ENV["SOURCE_DATE_EPOCH"] = "1451574000"
-
     virtualenv_install_with_resources
 
     generate_completions_from_executable(bin/"rip", shell_parameter_format: :click)

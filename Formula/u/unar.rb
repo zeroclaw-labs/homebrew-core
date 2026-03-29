@@ -5,6 +5,7 @@ class Unar < Formula
   sha256 "652953d7988b3c33f4f52b61c357afd1a7c2fc170e5e6e2219f4432b0c4cd39f"
   license "LGPL-2.1-or-later"
   revision 7
+  compatibility_version 1
   head "https://github.com/MacPaw/XADMaster.git", branch: "master"
 
   bottle do
@@ -30,8 +31,9 @@ class Unar < Formula
     depends_on "zlib-ng-compat"
   end
 
-  # Clang must be used on Linux because GCC Objective C support is insufficient.
-  fails_with :gcc
+  fails_with :gcc do
+    cause "GCC Objective-C support is insufficient"
+  end
 
   resource "universal-detector" do
     url "https://github.com/MacPaw/universal-detector/archive/refs/tags/1.1.tar.gz"

@@ -1,18 +1,18 @@
 class Libavif < Formula
   desc "Library for encoding and decoding .avif files"
   homepage "https://github.com/AOMediaCodec/libavif"
-  url "https://github.com/AOMediaCodec/libavif/archive/refs/tags/v1.3.0.tar.gz"
-  sha256 "0a545e953cc049bf5bcf4ee467306a2f113a75110edf59e61248873101cd26c1"
+  url "https://github.com/AOMediaCodec/libavif/archive/refs/tags/v1.4.1.tar.gz"
+  sha256 "d4aea31a4becb3273ba7968221be2e48148ba05eb8a68d14e671963e17785648"
   license "BSD-2-Clause"
-  revision 1
+  compatibility_version 1
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "cfe93d3c3bae786d4756d578f7cfd290c078d9e83ca551bab704001597f007b6"
-    sha256 cellar: :any,                 arm64_sequoia: "18885d98641d2a82e4afeab3c4d19d87aa367a37772cf7609615ab0b56ed0e12"
-    sha256 cellar: :any,                 arm64_sonoma:  "c5f3be4aede27d832004090fbfe18144df6cf1c061836fa9f6f314ef0bc9dcf5"
-    sha256 cellar: :any,                 sonoma:        "7721ab3bb40cc69b00fac770dbeffe9789a9f395ca6b1a4433f0922a5096a6f6"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "6075a5a2124cc8f238b082022b35ad0e4b23088095fe263f3bac8109c9de2cf0"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "bdbe3f050ec448e524343c4bbe29302e542fd8089ffd62d968bd860a20d9147d"
+    sha256 cellar: :any,                 arm64_tahoe:   "44d57589d5dcaedb19f883c8e4e1d328c9041494d0380c60d97272854a13f749"
+    sha256 cellar: :any,                 arm64_sequoia: "697f6dfd4acd6e06053a7ad50378e80889199b0ccf834d0a1578a497a0cf0aff"
+    sha256 cellar: :any,                 arm64_sonoma:  "cd850b316534c631ba07b625d33eed0d4d5c6001d73bb5783055be1ac2376ebb"
+    sha256 cellar: :any,                 sonoma:        "12d4cc2b73516496876a3e93f821858bad28e47a76fadd3b15c7dcefdc495734"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "6806097bffeb1f1635b3545c8e35c24eecf9a7d89ab7a04b6ff7620f65e1e8c7"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8631446bdda8ac7f2dfe1142369d91b9d09b317806c2d15263adad5ef67b4ae5"
   end
 
   depends_on "cmake" => :build
@@ -26,7 +26,14 @@ class Libavif < Formula
     depends_on "zlib-ng-compat"
   end
 
+  resource "libargparse" do
+    url "https://github.com/kmurray/libargparse/archive/ee74d1b53bd680748af14e737378de57e2a0a954.tar.gz"
+    sha256 "7727b0498851e5b6a6fcd734eb667a8a231897e2c86a357aec51cc0664813060"
+  end
+
   def install
+    resource("libargparse").unpack(buildpath/"ext/libargparse")
+
     args = %W[
       -DCMAKE_INSTALL_RPATH=#{rpath}
       -DAVIF_CODEC_AOM=SYSTEM

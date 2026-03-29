@@ -2,21 +2,18 @@ class Mage < Formula
   desc "Make/rake-like build tool using Go"
   homepage "https://magefile.org"
   url "https://github.com/magefile/mage.git",
-      tag:      "v1.15.0",
-      revision: "9e91a03eaa438d0d077aca5654c7757141536a60"
+      tag:      "v1.17.0",
+      revision: "707313f6ee76e8547dd185dc3ef817dea3389429"
   license "Apache-2.0"
   head "https://github.com/magefile/mage.git", branch: "master"
 
   bottle do
-    rebuild 2
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "f47478f5ca2560f1d26a4419dca1894f19220204024bd322d607a7d4d3d301fc"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "d854917c87fca0539be1327468ea017de476cda7744fdd940591cd748fba1b37"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "d854917c87fca0539be1327468ea017de476cda7744fdd940591cd748fba1b37"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "d854917c87fca0539be1327468ea017de476cda7744fdd940591cd748fba1b37"
-    sha256 cellar: :any_skip_relocation, sonoma:        "c8fea11b3b195466ee1a8977b4cf79e03076bf44ea18bb90f227025859fe639b"
-    sha256 cellar: :any_skip_relocation, ventura:       "c8fea11b3b195466ee1a8977b4cf79e03076bf44ea18bb90f227025859fe639b"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "8e6b55c77f8da7119b98edf75d7ac96b38929f785a87d04bc045a7c3b50d9fe5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2e003ef001493785054e1e95b8746f6503a28e66a431028fcd751d070139637a"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "3e6cc26c9cad24fbcc66e42d5c3c546e640161c6b78a1f6374355f68b7eac7f5"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "3e6cc26c9cad24fbcc66e42d5c3c546e640161c6b78a1f6374355f68b7eac7f5"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "3e6cc26c9cad24fbcc66e42d5c3c546e640161c6b78a1f6374355f68b7eac7f5"
+    sha256 cellar: :any_skip_relocation, sonoma:        "dd6b93b6d0f87b77ec64b074e029757f0fb545882f5a9b4d8564cf7acc3d2484"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "61032af0f06706ed801424fa1439f9ae882d78a51014c13607440c01d6f4738c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "61b465adcc6c58f1e98b2d9677a95a7574b018586408df398c0f341ea8a1f9f8"
   end
 
   depends_on "go"

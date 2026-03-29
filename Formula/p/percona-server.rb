@@ -1,10 +1,10 @@
 class PerconaServer < Formula
   desc "Drop-in MySQL replacement"
   homepage "https://www.percona.com"
-  url "https://downloads.percona.com/downloads/Percona-Server-8.4/Percona-Server-8.4.7-7/source/tarball/percona-server-8.4.7-7.tar.gz"
-  sha256 "e5405e81c4f6e5ad5052de1043a2e529607b5060677d01ba3cafc7c69f4661a6"
+  url "https://downloads.percona.com/downloads/Percona-Server-8.4/Percona-Server-8.4.8-8/source/tarball/percona-server-8.4.8-8.tar.gz"
+  sha256 "8ec19aa2fcb714d06ba6b0b6ed1edc3687c06664e3a922b6d54eb09fa4c48810"
   license "BSD-3-Clause"
-  revision 2
+  revision 1
 
   livecheck do
     url "https://www.percona.com/products-api.php", post_form: {
@@ -20,16 +20,13 @@ class PerconaServer < Formula
     end
   end
 
-  no_autobump! because: :requires_manual_review
-
   bottle do
-    rebuild 1
-    sha256 arm64_tahoe:   "8b10551d5389b349f5e2b74f4824f05bd5d0b58384e244302f170ddf21d632d9"
-    sha256 arm64_sequoia: "696e21d8bd9e5d49c30887dc2e4f211297796ca0cb5c564f9cabfc7ea20922be"
-    sha256 arm64_sonoma:  "63644bf00b52532827dcd062d02bd2d957e681a627b44b4edd4d38fff6e87dea"
-    sha256 sonoma:        "23ef2eced1b7879f2a703b3acc66eb2946109058facbc70c3fe1c2000662dfc7"
-    sha256 arm64_linux:   "8a0740d309ed09f46157f0db24e1451b4a4a4c2937662b650c5d6383a2598284"
-    sha256 x86_64_linux:  "1d6af147e9c30a376912642756bbba3e8997fe2d463de8ecbf5bcb8771b09b3b"
+    sha256 arm64_tahoe:   "c891a528752c5d71cefeb3d49d82241389d0d722609806bfacc7c6d62acdec37"
+    sha256 arm64_sequoia: "6036ca4c419f3bf4fbb24a29caed42d9422ef07c9b3c63fd50ff3595010e1d4c"
+    sha256 arm64_sonoma:  "e2d84ef1ccf07242fd9f1f2157d6208076353658bd1b8536c582137c5850fdd3"
+    sha256 sonoma:        "488aa9a09b6340717eec87841c62878f22e6cb6b32320ae1f7c69de5af4c9a09"
+    sha256 arm64_linux:   "15922ecb65d0660c317568174d8721c4c597b7876d5912a7da54e1ec441c0545"
+    sha256 x86_64_linux:  "1c83b09f506e8855ba84ca1a4afb388f8c14009214a074c91c649ed10df8a63d"
   end
 
   depends_on "bison" => :build

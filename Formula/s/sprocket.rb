@@ -3,8 +3,8 @@ class Sprocket < Formula
   homepage "https://sprocket.bio"
   # pull from git tag to get submodules
   url "https://github.com/stjude-rust-labs/sprocket.git",
-      tag:      "v0.21.1",
-      revision: "16a97e58197031d3c07112192f23efceb7f036de"
+      tag:      "v0.22.0",
+      revision: "d022d74d39cb8c3e537d99e0dd4980c75a2e6a99"
   license any_of: ["Apache-2.0", "MIT"]
   head "https://github.com/stjude-rust-labs/sprocket.git", branch: "main"
 
@@ -15,12 +15,12 @@ class Sprocket < Formula
 
   bottle do
     rebuild 1
-    sha256 cellar: :any,                 arm64_tahoe:   "cc05b7859da33e6ed068be803480085b6334279b8ed9eb9972c25a35932b2972"
-    sha256 cellar: :any,                 arm64_sequoia: "23640359ec0c0522a9390f5709fa5b8dc5f4a9f57db1130e384679e5e7efd6bb"
-    sha256 cellar: :any,                 arm64_sonoma:  "df24e6ef0aecec1ab5bb96069d3fcd5def8b91e687f466c29aac9555b52c713d"
-    sha256 cellar: :any,                 sonoma:        "befe3493c616e91c7c54a3d946dad1ec3f5ebc5842c1362943fed6b1222693a7"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "e13387d2fc9ae0c08c14f09647f4ace87c9e0a039ee2e76df3af8bf7d9dfeb37"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4871f18839c5588d3931555870e2f41ee80f3495bcfde98e7eadcf5ed03b006c"
+    sha256 cellar: :any,                 arm64_tahoe:   "7b5b4674bbe74baa303745ad30a16e1eee09815a12681cccdd9f4014c47f0425"
+    sha256 cellar: :any,                 arm64_sequoia: "f20bfae256ab5db082cf63116a3ce167a481929214ee14c2941809b94c25e719"
+    sha256 cellar: :any,                 arm64_sonoma:  "11a6c1c241bc44c190e219eb4771618c48f3afb03394b91a8735e2093029d11d"
+    sha256 cellar: :any,                 sonoma:        "f5b8f7374e2036af18819d3004e821dc1eaab8aba47476062fa1c843890742f8"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "964c7b25ea8981adda2037f79197937dbcd67b8f8137fbcdaa68f1507ded08cc"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ab377ecabb1e59c3ce4993a558bd4f2c2f08f286fe4d282fdb224fd3c89ce07c"
   end
 
   depends_on "pkgconf" => :build
@@ -33,6 +33,8 @@ class Sprocket < Formula
 
   def install
     system "cargo", "install", *std_cargo_args
+
+    generate_completions_from_executable(bin/"sprocket", "completions", shells: [:bash, :zsh, :fish, :pwsh])
   end
 
   test do

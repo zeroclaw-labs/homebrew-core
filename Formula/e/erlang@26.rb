@@ -3,8 +3,8 @@ class ErlangAT26 < Formula
   homepage "https://www.erlang.org/"
   # Download tarball from GitHub; it is served faster than the official tarball.
   # Don't forget to update the documentation resource along with the url!
-  url "https://github.com/erlang/otp/releases/download/OTP-26.2.5.17/otp_src_26.2.5.17.tar.gz"
-  sha256 "667d2f2c56b769d43ce3661fd941d5a30b03d7a060857a4a2ff5deef90666969"
+  url "https://github.com/erlang/otp/releases/download/OTP-26.2.5.18/otp_src_26.2.5.18.tar.gz"
+  sha256 "0415793dbca27cf1ceb688f2198ccd669f0039a87309b9e882f14b61c1161f26"
   license "Apache-2.0"
 
   livecheck do
@@ -13,12 +13,12 @@ class ErlangAT26 < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "d0375cfa875fef6e4d456d182782c6cc54970999607224dd0d5068778328fd25"
-    sha256 cellar: :any,                 arm64_sequoia: "7340871226e9f2e0c060bdaa5be4a1582a8560b15eda87b452c5dde05c8ed3ca"
-    sha256 cellar: :any,                 arm64_sonoma:  "c847a15a474bc2dd48b3d0b3ceaf95418f9b025bfcc13f47d915c7939671ad91"
-    sha256 cellar: :any,                 sonoma:        "b70b48857468bddc6c5d012605e16f4f18bf210febc8d0cbe1ddd5f6ed90013a"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "d4f9f8564c87025e99edb54a0ea8bff598def5a138734deaec5686cc16fa4b06"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "33e9c2f71d0241db382cd9bd0065252233efc68b21539fa03ca175a249017631"
+    sha256 cellar: :any,                 arm64_tahoe:   "8aad27faa59d6ced9a83f2321efc51c78372fd996086def4b10a2415520f88c9"
+    sha256 cellar: :any,                 arm64_sequoia: "34141bb2325a2ed7365169a426a23059fe042a772bd0e63ef3e4beb1d4255a82"
+    sha256 cellar: :any,                 arm64_sonoma:  "a69f8b1d25a42bfb5b96e1f762da086b11749332ed05e529a6ad1788539d480a"
+    sha256 cellar: :any,                 sonoma:        "81a1cacb509fe93e81947582d28ee42dcf5c7ada628eea3bb937a2b5ca37623a"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "b24c1a008a50a904bf2c885172248e48f765b15951f993d11fbe45936b62426b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "55d519f8c154814206fc734b9eb42189488be6689a7cbdf970d525e2937b2deb"
   end
 
   keg_only :versioned_formula
@@ -36,8 +36,8 @@ class ErlangAT26 < Formula
   end
 
   resource "html" do
-    url "https://github.com/erlang/otp/releases/download/OTP-26.2.5.17/otp_doc_html_26.2.5.17.tar.gz"
-    sha256 "627d3ad435dedf9989f2cf4ccce53fde38286986cc644a58939b48d617e8a48e"
+    url "https://github.com/erlang/otp/releases/download/OTP-26.2.5.18/otp_doc_html_26.2.5.18.tar.gz"
+    sha256 "25cc4dda891dbb284c5038e0ed94ae9e58fbff289526e204177b83db5046d422"
 
     livecheck do
       formula :parent

@@ -1,23 +1,21 @@
 class Keploy < Formula
   desc "Testing Toolkit creates test-cases and data mocks from API calls, DB queries"
   homepage "https://keploy.io"
-  url "https://github.com/keploy/keploy/archive/refs/tags/v3.3.30.tar.gz"
-  sha256 "ba1e4126e92117ba5daa9ce772bdd89d7f1db1d058448bf772d1d4cf1c42d880"
+  url "https://github.com/keploy/keploy/archive/refs/tags/v3.3.62.tar.gz"
+  sha256 "ff8618f201dccc0e0e2778b43f687e42e89418a067f4698025c5e8e7b51d933a"
   license "Apache-2.0"
   head "https://github.com/keploy/keploy.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "0593efddff06c81a427c0e333a245248bb53c2bc0a0133abfebb37eb6daa9915"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "0593efddff06c81a427c0e333a245248bb53c2bc0a0133abfebb37eb6daa9915"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "0593efddff06c81a427c0e333a245248bb53c2bc0a0133abfebb37eb6daa9915"
-    sha256 cellar: :any_skip_relocation, sonoma:        "aa69dea8ef2865d22f06bcc37c6f274877a17474cdb4e220189c04391f882d97"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "b5ae148697ee1aa62e8347a020452989d98c6b9846f8d0933ebb281e236b0eea"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "062c130803f05020501e5e8619f59f1f6d2e885968d897df8da4ebd95c571112"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "635d7bf1df36a0ab2bf5fdc3a4590c8c247b43f5973e782b7e3742aeb7a18c3b"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "635d7bf1df36a0ab2bf5fdc3a4590c8c247b43f5973e782b7e3742aeb7a18c3b"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "635d7bf1df36a0ab2bf5fdc3a4590c8c247b43f5973e782b7e3742aeb7a18c3b"
+    sha256 cellar: :any_skip_relocation, sonoma:        "2be8908a39561698ad446ee107a1310455cf13bb389163e338bb9a2d760a939b"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "67c51987ebcc1d843908e2f07517811570ab9ffe3cd638f339b24220da6566ec"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2d76437bb0c5623d36552edd5a1cc42836b6e2210e63cb6460a475e1bfb572d8"
   end
 
-  # Unpin Go when Keploy supports Go 1.26
-  # (when go.mod references vitess > v23.0.2, ref https://github.com/vitessio/vitess/pull/19367)
-  depends_on "go@1.25" => :build
+  depends_on "go" => :build
 
   def install
     system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=#{version}")

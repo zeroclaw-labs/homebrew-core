@@ -1,19 +1,18 @@
 class Handbrake < Formula
   desc "Open-source video transcoder available for Linux, Mac, and Windows"
   homepage "https://handbrake.fr/"
-  url "https://github.com/HandBrake/HandBrake/releases/download/1.10.2/HandBrake-1.10.2-source.tar.bz2"
-  sha256 "c65e1cc4f8cfc36c24107b92c28d60e71ef185ec983e9a5841facffafea5f8db"
+  url "https://github.com/HandBrake/HandBrake/releases/download/1.11.1/HandBrake-1.11.1-source.tar.bz2"
+  sha256 "4ff6a8a57c9b1cea51025306e313eee423b0fa1a8b7799aeaa8d4d7c457a7310"
   license "GPL-2.0-only"
-  revision 2
   head "https://github.com/HandBrake/HandBrake.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "2d3a39c056cd56eb9f56ab63407bf886088f190919668cbed3caf5e66ca4c032"
-    sha256 cellar: :any,                 arm64_sequoia: "4cab7b397d57e95dcdbcc4d0afe366648190a569fb6a7312ab37799bb1a24ccb"
-    sha256 cellar: :any,                 arm64_sonoma:  "fb419ece19e23536c4af6e464e73483e6ea057e67f0a6f859c5857a1ee2f75c7"
-    sha256 cellar: :any,                 sonoma:        "fec30e2ef0b4f48f8ae12a825d4785d5e23a77ddadc4c77fc3d44aac8a93d3a2"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "d2284bd27ae585db94fb1674367517e8ae42eb2297857b66613e92eb059254a3"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f07869bbe8ed2ae1c9cec894569b9d2f12486c7dff8130381a336d5771cbc733"
+    sha256 cellar: :any,                 arm64_tahoe:   "e4958aeec4f211615cabf05103cc658fd16e41fa94a75ad6534ee3d530f8c9dc"
+    sha256 cellar: :any,                 arm64_sequoia: "6bced8e0eb310af3577405a6b8f1547a223740dd2167483b8a815d07b6ed7f3b"
+    sha256 cellar: :any,                 arm64_sonoma:  "7258a8f387259d9fc67dd4bebf095804fe089a7642c7ee19ae8950e944c9c5fa"
+    sha256 cellar: :any,                 sonoma:        "a5262e08a6c6d774ef9785d642a723b2fccc41e0a4667f820b8836f67c9767ef"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "7ec61958b85a3b15844259f56a2975bf3dd1cf1ab8703ef9d1860eb781929270"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a2d8d8f17070ea586be9a0524af66406fed98d4f781595d7f5310b692d87658e"
   end
 
   depends_on "autoconf" => :build
@@ -87,23 +86,6 @@ class Handbrake < Formula
       inreplace ["contrib/x265_10bit/module.defs", "contrib/x265_12bit/module.defs", "contrib/x265_8bit/module.defs"],
                 "-DENABLE_CLI=OFF",
                 "-DENABLE_CLI=OFF -DENABLE_SVE2=OFF"
-
-      # Fix AArch64 assembly for pixel-util.S
-      (buildpath/"contrib/x265/A09-aarch64-fix.patch").write <<~PATCH
-        diff --git a/source/common/aarch64/pixel-util.S b/source/common/aarch64/pixel-util.S
-        index e2b31e4..1bcaf4a 100644
-        --- a/source/common/aarch64/pixel-util.S
-        +++ b/source/common/aarch64/pixel-util.S
-        @@ -860,7 +860,7 @@ function PFX(scanPosLast_neon)
-             lsl             w13, w13, w6
-             lsl             w15, w15, w6
-             extr            w14, w14, w13, #31
-        -    bfc             w15, #31, #1
-        +    bfm             w15, wzr, #31, #31
-             cbnz            w15, .Loop_spl_1
-         .Lpext_end:
-             strh            w14, [x2], #2
-      PATCH
     end
 
     ENV.append "CFLAGS", "-I#{Formula["libxml2"].opt_include}/libxml2" if OS.linux?

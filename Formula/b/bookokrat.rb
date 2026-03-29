@@ -1,18 +1,18 @@
 class Bookokrat < Formula
   desc "Terminal EPUB Book Reader"
   homepage "https://bugzmanov.github.io/bookokrat/index.html"
-  url "https://github.com/bugzmanov/bookokrat/archive/refs/tags/v0.3.6.tar.gz"
-  sha256 "b81f463d4a24bdcf6aff24d31132c068d0c4acea3913a736f4352c0bf0cfc52d"
+  url "https://github.com/bugzmanov/bookokrat/archive/refs/tags/v0.3.8.tar.gz"
+  sha256 "9257c00ec69866c017264ae6ab3903c08a72372162a24ea5ccbb0b0bfbe68754"
   license "AGPL-3.0-or-later"
   head "https://github.com/bugzmanov/bookokrat.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "836187576a7e929ee749c5b0512779a20dc0c34dace0487fb21d1589f497a3ee"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "e27899190e2c2981d137637cabd775e39d875c834d99453bc6056a9b4ccc06f5"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "13ee2d1e43bba95561f7d6e80a3038709d5b6e6e52586c7ea13aec2db2f8f22a"
-    sha256 cellar: :any_skip_relocation, sonoma:        "c57b4bfb914483835c58bd3c0e3362fe9224df56c81b8cbf27021763b07541d3"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "33abaae88339a594708d8cc99295d856ed4aa21386778ea20f29860579fbdf8e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "bd5abdf8d2438b9db3b6486440e3267c33ad2e1d3c60482ed2d40d04126cc0d9"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "56b48e13a60720ea835fa2b79c382676b46399edaf4943f3a0676ca793f68669"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "d4982721595e58ae305deed194ecc6c2973bb86900346516582d1312c9c8eda9"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "0fd8097f9e5ab3bcb278c3564454a9ff3b64fdd58938679e613ea07bebee48be"
+    sha256 cellar: :any_skip_relocation, sonoma:        "f5937eac5305ea00494eb09b25c9105adc7829e765205849d651efacd9a0857a"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "be10702fab72b7a1793ee543dfaf21ef9e421fd928a3a2bcf201f606d1da831a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "15b3e021bff357f18f1b94417c5afd0abef9c36f1994ed45cdb8d19a2cd4c4a9"
   end
 
   depends_on "pkgconf" => :build

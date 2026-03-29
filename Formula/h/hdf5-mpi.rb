@@ -1,23 +1,23 @@
 class Hdf5Mpi < Formula
   desc "File format designed to store large amounts of data"
   homepage "https://www.hdfgroup.org/solutions/hdf5/"
-  url "https://github.com/HDFGroup/hdf5/releases/download/2.0.0/hdf5-2.0.0.tar.gz"
-  sha256 "f4c2edc5668fb846627182708dbe1e16c60c467e63177a75b0b9f12c19d7efed"
+  url "https://github.com/HDFGroup/hdf5/releases/download/2.1.1/hdf5-2.1.1.tar.gz"
+  sha256 "efff93b5a904d66e8f626d7da60b5eedc9faf544be27dbabbaa87967b8ad798b"
   license "BSD-3-Clause"
   version_scheme 1
+  compatibility_version 1
 
   livecheck do
     formula "hdf5"
   end
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any,                 arm64_tahoe:   "8f9be3c2c9f4d6d4af103e18e239b8a66c92f50a06992441c1981b280c88d6ec"
-    sha256 cellar: :any,                 arm64_sequoia: "a28a5a87998384e10620f990dafb9a16b3eb978a858ff03ea94f03f77c85d4ac"
-    sha256 cellar: :any,                 arm64_sonoma:  "8759076738c1ec4ecca1eb32f0551863ada1da51b55353a158a6aa8be3bc4b83"
-    sha256 cellar: :any,                 sonoma:        "5dff06fce6d4aafb2fcf2cac37f4aafd378b6974a51f55af08719a67cb283022"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "ff91d2ea3cd0c79226e2864709ee36986dd66a866874b2c24d4f12c7e3063b42"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "558b834ced860ab5bb3477646117ccf0d157fbc31b36eeeb1120905dda11be06"
+    sha256 cellar: :any,                 arm64_tahoe:   "be826b39d4bae3f28fcb17eff9b1e1eb7d943dfe9032ddf87d61a23b57d78f4d"
+    sha256 cellar: :any,                 arm64_sequoia: "2c75d9f0921baeddc4a86bb616bc31f3a99c9fea78b3d6a8370fdcab70c617c8"
+    sha256 cellar: :any,                 arm64_sonoma:  "bd79c2dc5fdd0875830eaf3ed7bd4a02ff25c0592d0dade5e6b9e450e9bb463a"
+    sha256 cellar: :any,                 sonoma:        "2745926da93d021d27287fbbefab8053f1fbfef4d990058ea0684dff955c6341"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "b0f1ef56161bcb8235bd9b65b78c61aca298cf6d4c49b7de52c8547450eb292a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1fed39da8c3d3e958bfbf7bb9423b2a7aeb961d7a0bc481f3403ddbbede297b1"
   end
 
   depends_on "cmake" => :build

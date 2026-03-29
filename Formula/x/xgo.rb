@@ -1,8 +1,8 @@
 class Xgo < Formula
   desc "AI-native programming language that integrates software engineering"
   homepage "https://xgo.dev/"
-  url "https://github.com/goplus/xgo/archive/refs/tags/v1.6.5.tar.gz"
-  sha256 "50e588653f0bbac730d561ef06b0d4c1baba441c72beb37ab6c046ff865bcbcc"
+  url "https://github.com/goplus/xgo/archive/refs/tags/v1.6.8.tar.gz"
+  sha256 "0289779ddd06a55e4367246a2a872b7da75c913796ff35e126c06d29f3181398"
   license "Apache-2.0"
   head "https://github.com/goplus/xgo.git", branch: "main"
 
@@ -12,25 +12,32 @@ class Xgo < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "48f6c5b8edaca86cbe7ba51b7a63c99e7c15c3cc5ee53ad0ecd454fb8d9e49b1"
-    sha256 arm64_sequoia: "672d551ff8bc7b122b61843078ebbaae78e4445f1de8bbe67155f17f5e5d741e"
-    sha256 arm64_sonoma:  "e7e20a80045614efde22eb0fc1b1440ab248c92087e13747b9d43c8f7b5942dd"
-    sha256 sonoma:        "feb885a3091c946c01451c541fa99603d2a1a07b1de15eebe29a83d710eaaf91"
-    sha256 arm64_linux:   "8f0da043453857b7548ce56b1b5a7c7a929a71e838794058a165b5a27228e973"
-    sha256 x86_64_linux:  "d037a6ad4439b2a4f5263c7648e21fb8f97e0b41454f849c0fe5a65eb18c3999"
+    sha256 arm64_tahoe:   "79020b89a26a18685b58789f50b1ec5d948fc1a6948106e1dede95d1d4229d62"
+    sha256 arm64_sequoia: "79020b89a26a18685b58789f50b1ec5d948fc1a6948106e1dede95d1d4229d62"
+    sha256 arm64_sonoma:  "79020b89a26a18685b58789f50b1ec5d948fc1a6948106e1dede95d1d4229d62"
+    sha256 sonoma:        "100ed772a3f4b125d868c53198bab18ff3c1db938fdd9e729fd711ea6f154090"
+    sha256 arm64_linux:   "2254cf4808dddec4cdf5eb6c99514fa4cac5000da20895e521350651e846b5e5"
+    sha256 x86_64_linux:  "3ad5396c9092ee7baba379dd478df2d74b428d45d19a9ba6ce98191b4ce1f425"
   end
 
   depends_on "go"
 
   def install
-    ENV["GOPROOT_FINAL"] = libexec
+    ENV["CGO_ENABLED"] = "0"
 
-    # Add VERSION file
-    (buildpath/"VERSION").write version
+    ldflags = %W[
+      -X github.com/goplus/xgo/env.buildVersion=v#{version}
+      -X github.com/goplus/xgo/env.buildDate=#{time.strftime("%Y-%m-%d")}
+      -X github.com/goplus/xgo/env.defaultXGoRoot=#{libexec}
+    ]
 
-    system "go", "run", "cmd/make.go", "--install"
+    system "go", "build", *std_go_args(ldflags:, output: libexec/"bin/xgo"), "./cmd/xgo"
 
-    libexec.install Dir["*"] - Dir[".*"]
+    # gop is a symlink to xgo
+    (libexec/"bin").install_symlink "xgo" => "gop"
+
+    # Install source files (required for XGOROOT validation)
+    libexec.install Dir["*"] - Dir[".*"] - ["bin"]
     bin.install_symlink Dir[libexec/"bin/*"]
 
     generate_completions_from_executable(bin/"xgo", shell_parameter_format: :cobra)

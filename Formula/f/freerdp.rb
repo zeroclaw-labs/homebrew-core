@@ -1,18 +1,17 @@
 class Freerdp < Formula
   desc "X11 implementation of the Remote Desktop Protocol (RDP)"
   homepage "https://www.freerdp.com/"
-  url "https://github.com/FreeRDP/FreeRDP/releases/download/3.22.0/freerdp-3.22.0.tar.gz"
-  sha256 "656670f3aac2c995cb4b1ba181549cc122cc9c95ec31be68a582c1182f474376"
+  url "https://github.com/FreeRDP/FreeRDP/archive/refs/tags/3.24.2.tar.gz"
+  sha256 "dcb46af2a4296c796c83de610613002ac5a89a3f4ed18122f889d65611cf473e"
   license "Apache-2.0"
 
   bottle do
-    rebuild 1
-    sha256 arm64_tahoe:   "2c14ff72a761b11a29a6c854e4a7d89b92f54c9710639d649557f4bd1c82d74f"
-    sha256 arm64_sequoia: "3f2bfe0c3f49b73bef52526272847556ef42b90cb0e569ae33f7e5400ca92fcd"
-    sha256 arm64_sonoma:  "cdc340e76fb1c2256d862cc643dd393cc462b776ad97c89410603a8dc077193b"
-    sha256 sonoma:        "7f0e7c9cc84cf88e1eff4dd1c3b6c85ad7b990960623120b016e06725e2d0fbc"
-    sha256 arm64_linux:   "96639f293ddf5380ec56abb537d04835b49b931b08aa64e9b247074657658c74"
-    sha256 x86_64_linux:  "88b83975dfa9448400e7db67a898d97d545042e6cd802b5f7c8ab07dd4537620"
+    sha256 arm64_tahoe:   "8988afd6e8828a4ff1454fde1173021c72af4d88324f95565c65703f66656175"
+    sha256 arm64_sequoia: "f59417b1763936b3e7c379485014f9e03bfad054fd074848238c5b6e88f8bb02"
+    sha256 arm64_sonoma:  "cc6d9fae72f71b53b178090eb853dfad0a95b20e342f602108cf44ce15f44052"
+    sha256 sonoma:        "68da11845defe13f6045888f773921bb49be3a29fc2ab05f98c9ddecc3298b28"
+    sha256 arm64_linux:   "65c24a6b100d92017dbb72ba5b1fedb5117a21790e57631ed270a9de5367eaeb"
+    sha256 x86_64_linux:  "eac5e3e505caa38107c8d0874853d513bdd2fd13673644c0b53f8c16e2c80dfe"
   end
 
   head do
@@ -24,6 +23,7 @@ class Freerdp < Formula
   depends_on "pkgconf" => :build
   depends_on "cjson"
   depends_on "ffmpeg"
+  depends_on "jansson"
   depends_on "jpeg-turbo"
   depends_on "libusb"
   depends_on "libx11"
@@ -39,6 +39,7 @@ class Freerdp < Formula
   depends_on "pkcs11-helper"
   depends_on "sdl3"
   depends_on "sdl3_ttf"
+  depends_on "uriparser"
 
   uses_from_macos "cups"
 

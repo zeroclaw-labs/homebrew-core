@@ -2,18 +2,17 @@ class ThorsAnvil < Formula
   desc "Set of modern C++20 libraries for writing interactive Web-Services"
   homepage "https://github.com/Loki-Astari/ThorsAnvil"
   url "https://github.com/Loki-Astari/ThorsAnvil.git",
-      tag:      "9.0.16",
-      revision: "88d1bf13c87b8371bd1cbdb9b5b59f162f695df8"
+      tag:      "9.1.7",
+      revision: "92e7a873bd40355495ad193ff3657e049635768a"
   license "GPL-3.0-only"
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any,                 arm64_tahoe:   "aa4ad5afb6f88b6de673194e2c107f1fda57415b4700f22b596ed274688f6c68"
-    sha256 cellar: :any,                 arm64_sequoia: "99c8581e1a7941e66aec96d1c6da137cd3717079533d8c5db753eaf753559775"
-    sha256 cellar: :any,                 arm64_sonoma:  "72609ee5746a5631b60a58cf18a609a93ee3547a8ae1534d70ce4f1ff3d7c956"
-    sha256 cellar: :any,                 sonoma:        "e8732302e5a5fee528944b34703e904b0cde5e37da4472c2acae2ea214c86a43"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "09029eb539828376b66ea49added792f3e2914461529fe3f81424bb872d1ab3c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "641579bf11aa4c8c0e4636ac86856ee1e3b20ab3fcaf3634ff0595024d2f075b"
+    sha256 cellar: :any,                 arm64_tahoe:   "6f6f41afc0efa8552539086da5677e5bc84278e6019f83698a38b375988e21b3"
+    sha256 cellar: :any,                 arm64_sequoia: "4c0a12249f6b644dbd41d98ff4b7fbfd5281855e2df54e7f3ee55a03070907db"
+    sha256 cellar: :any,                 arm64_sonoma:  "8ce514d19c32ac385fc3248ff6809f915e962e8c792d7887629a4fe0121d8152"
+    sha256 cellar: :any,                 sonoma:        "130e656432d1d804c5e9523a381ea1d57150d8919c0ee63aaf4ef7a289338b6f"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "6195575b157a67178cb620ce37121cbf6377d72f8866a9e79bd4e2bd91b0915a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2860701835361e9367404f765719771cbd9d5cc0e5904b62ec2e2471aea21f42"
   end
 
   depends_on "cmake" => :build
@@ -42,8 +41,7 @@ class ThorsAnvil < Formula
                           "--disable-Mongo-Service",
                           "--disable-slacktest",
                           *std_configure_args
-    ENV.deparallelize
-    system "make"
+    system "make", "-j", "1", "JOBS=" + ENV.make_jobs.to_s
     system "make", "install"
   end
 

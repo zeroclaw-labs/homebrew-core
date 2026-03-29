@@ -1,9 +1,10 @@
 class Node < Formula
   desc "Open-source, cross-platform JavaScript runtime environment"
   homepage "https://nodejs.org/"
-  url "https://nodejs.org/dist/v25.6.1/node-v25.6.1.tar.xz"
-  sha256 "cf756781c8b4dc5ee030f87ddf9d51b8d5bf219ad56cbd9855c4a3bdc832c78e"
+  url "https://nodejs.org/dist/v25.8.2/node-v25.8.2.tar.xz"
+  sha256 "3efb19e757dc59bb21632507200d2de782369d5226a68955e9372c925fdf2471"
   license "MIT"
+  compatibility_version 1
   head "https://github.com/nodejs/node.git", branch: "main"
 
   livecheck do
@@ -12,13 +13,12 @@ class Node < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any,                 arm64_tahoe:   "e7295cc3040363be0eb71214f19ea3aab25ab237ec85f13b73541f31fd91b563"
-    sha256 cellar: :any,                 arm64_sequoia: "bcadbb3efb9c3a8ba6134d6619fb8f77f72ab9ecd4f21676a0e27c8cfb1b39bd"
-    sha256 cellar: :any,                 arm64_sonoma:  "d27f3fd754db6e2c201eec1eb0cb48495ca61c1181afe905609d5dc1d3eac4fb"
-    sha256 cellar: :any,                 sonoma:        "a3d99d4706dc2e46a41542d38cff09f2df62bc14945ec4c04c1d5b8ce014a6f0"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "82e7e34217d1a2eb7aa495da89710a4cacd9c37dd23292cf2749d9e75f421a7a"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "defaccaabce374bbbde8100e9826059732a47f67faf1b6d359b03239ac40bdb9"
+    sha256 cellar: :any,                 arm64_tahoe:   "245baa6999d5884892274353f821380382ed69a763e7de22dd845980ab255c88"
+    sha256 cellar: :any,                 arm64_sequoia: "b8970d6e00b7ebe95b19f1e421a4e797c414b9c72a4916cb74cc87a52236cf7e"
+    sha256 cellar: :any,                 arm64_sonoma:  "04133ddf2d05affeac290adf62316dbf2a777b739292505a1f621ae3d82dd106"
+    sha256 cellar: :any,                 sonoma:        "4b2d4a702b22139c31b72087af82f90c0e1f872246d523dbf2700da3a19818d7"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "311a4d4a9124d7ef028c353eb7d9b101293d5f5b553551b367440bc823a8f876"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "71295a6d5fdfe8329d8a4f7147a07733e5a1311124634ebd2d5cf86191a3903a"
   end
 
   depends_on "pkgconf" => :build
@@ -67,8 +67,8 @@ class Node < Formula
   # We track major/minor from upstream Node releases.
   # We will accept *important* npm patch releases when necessary.
   resource "npm" do
-    url "https://registry.npmjs.org/npm/-/npm-11.9.0.tgz"
-    sha256 "5a172e3228e59d44cb9f44d5e83977178323bba3cc506016cae8e40b92ad418f"
+    url "https://registry.npmjs.org/npm/-/npm-11.11.1.tgz"
+    sha256 "a3b2dbeb2544809a75f186cbae27adc5ceb5adc1ee696e17dfed689d7f46fcf2"
 
     livecheck do
       url "https://raw.githubusercontent.com/nodejs/node/refs/tags/v#{LATEST_VERSION}/deps/npm/package.json"
@@ -195,9 +195,8 @@ class Node < Formula
     ln_s libexec/"lib/node_modules/npm/bin/npm-cli.js", bin/"npm"
     ln_s libexec/"lib/node_modules/npm/bin/npx-cli.js", bin/"npx"
 
-    generate_completions_from_executable(bin/"npm", "completion",
-                                         shells:                 [:bash, :zsh],
-                                         shell_parameter_format: :none)
+    # Use the _npm completion included in Zsh rather than generating broken completion
+    generate_completions_from_executable(bin/"npm", "completion", shells: [:bash], shell_parameter_format: :none)
   end
 
   def post_install

@@ -1,8 +1,8 @@
 class CodeCli < Formula
   desc "Command-line interface built-in Visual Studio Code"
   homepage "https://github.com/microsoft/vscode"
-  url "https://github.com/microsoft/vscode/archive/refs/tags/1.109.5.tar.gz"
-  sha256 "a61f685cfc3678dffadcc3cd898b9250db46e6b6fc0dbf76f8ab39500246ce44"
+  url "https://github.com/microsoft/vscode/archive/refs/tags/1.113.0.tar.gz"
+  sha256 "c56a5a7933e1af0b56243b050e504d8f3fa41eb4867af700d9e836a39611975c"
   license "MIT"
   head "https://github.com/microsoft/vscode.git", branch: "main"
 
@@ -12,12 +12,12 @@ class CodeCli < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "de28eaa224d9e5686930cbfd1e03e51396c494f3e8e5e0408ade070c615bb786"
-    sha256 cellar: :any,                 arm64_sequoia: "c2eda65ef42d657067a4ad5d2eef7d8002dd8de12fe77330d6c3540a34ae07c9"
-    sha256 cellar: :any,                 arm64_sonoma:  "3b984dbcb4602f1d11799ba4db736f201ae41840c15000969f428494bd793f06"
-    sha256 cellar: :any,                 sonoma:        "6e0f884b2fd97765f1e4ba82dffe3b41cce38b1d309ce1148c78956372f6661e"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "b6107deebfdf51b80fa8a6d75f4b48e0b5b436ba892ddaa40842109baf1c8937"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "bbfd817b5f8ce5f07589888aeca2603e4b4c8da0f66c78d4933087c5e9d68dd8"
+    sha256 cellar: :any,                 arm64_tahoe:   "c7716c337842f6ded79f5a40588396db6310437c47b9810b2d26794c39db04e2"
+    sha256 cellar: :any,                 arm64_sequoia: "b34c8b8dccf05521dfec0188cce1885fa140f9c79a2d50782095b1523fb2b2bd"
+    sha256 cellar: :any,                 arm64_sonoma:  "7abaa159a9544fd8af3a07a74259040f87f14de90ca41cbaf0d3d00ecfeaa9fe"
+    sha256 cellar: :any,                 sonoma:        "119968b59d1e5ad4fe70c8549f4cb11972c9b262cb35a0151c9b4b5c2c931bbc"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "6aa3e4e3088b20b6f9690c2dad3d23d34bcaf7d0c40b5052cbf19e0fdbce6565"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "795886ee9446b6f8e7d5aa55240760b97e5f70869b2e7c968b8610724ff7eb16"
   end
 
   depends_on "pkgconf" => :build

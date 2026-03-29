@@ -3,19 +3,18 @@ class Fwupd < Formula
 
   desc "Firmware update daemon"
   homepage "https://github.com/fwupd/fwupd"
-  url "https://github.com/fwupd/fwupd/releases/download/2.0.19/fwupd-2.0.19.tar.xz"
-  sha256 "3bb7a4a1e2d00f0ab513e4c667d7bf5a3ff34a9802757849d3fedf07dd40ddbb"
+  url "https://github.com/fwupd/fwupd/releases/download/2.1.1/fwupd-2.1.1.tar.xz"
+  sha256 "0ae697f1f2011571310cef5d96429d8a5d541f73b0025bd2b622c9c7f4fe05b6"
   license "LGPL-2.1-or-later"
   head "https://github.com/fwupd/fwupd.git", branch: "main"
 
   bottle do
-    rebuild 1
-    sha256 arm64_tahoe:   "cffe42541ae162df31f12e97a3b20ffba1952ba69b3e16c0774d1665e75d2ec6"
-    sha256 arm64_sequoia: "e530a21245e3d62aee5e422b31f23919992bfe4838a0a67156c59db6a4f6a5f6"
-    sha256 arm64_sonoma:  "2f825f68ffe6e48d76089eaa76c45dd13e58c497bc1042d00c50e2673c85c423"
-    sha256 sonoma:        "005ebfb60c9a051cf09bf5c49e579222f75c0fe860b94bb0eb363b6c781c6485"
-    sha256 arm64_linux:   "dff941c22c651355cc70f5baea1e196e4cff7e3f880f43d734074da87654937e"
-    sha256 x86_64_linux:  "721ef4a08946b239fa7b9db82f094ee5cb1f7d04914a11fdfb29cce5b8b81fee"
+    sha256 arm64_tahoe:   "78b0a4e435cba73b480495b554ddc03141e8faad8e51610e3173c75220d10bc1"
+    sha256 arm64_sequoia: "0c4de2faf2e4d18be5565846ca391d0448e25c137b3607d1e41b83a16bef29de"
+    sha256 arm64_sonoma:  "f311aa82bccc6fb683b7abfd0833a0d9ee97a524f680635af4da56f4322d220d"
+    sha256 sonoma:        "36b3d2a6996c800b1039827469aa6a6845f2f2ef6268d32732a1b3c2094b0e63"
+    sha256 arm64_linux:   "87a4a084eda8deab87794d7d895ff86daad0dce9744b67936d330f40d1c49942"
+    sha256 x86_64_linux:  "a31c8b63590dec1fe0abea7b1ba9ddb0b454b201e79023ad4dedf08233ee6461"
   end
 
   depends_on "gettext" => :build # for msgfmt
@@ -28,13 +27,10 @@ class Fwupd < Formula
 
   depends_on "glib"
   depends_on "gnutls"
-  depends_on "json-glib"
-  depends_on "libarchive"
   depends_on "libcbor"
   depends_on "libjcat"
   depends_on "libusb"
   depends_on "libxmlb"
-  depends_on "protobuf-c"
   depends_on "readline"
   depends_on "sqlite"
   depends_on "usb.ids"
@@ -75,7 +71,6 @@ class Fwupd < Formula
 
     system "meson", "setup", "build",
                     "-Dbuild=standalone", # this is used as PolicyKit is not available on macOS
-                    "-Dlibarchive=enabled", # fail if missing
                     "-Dpython=#{which(python3)}",
                     "-Dsupported_build=enabled",
                     "-Dplugin_flashrom=disabled",

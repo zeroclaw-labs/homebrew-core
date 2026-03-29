@@ -1,9 +1,8 @@
 class Buildkit < Formula
   desc "Concurrent, cache-efficient, and Dockerfile-agnostic builder toolkit"
   homepage "https://github.com/moby/buildkit"
-  url "https://github.com/moby/buildkit.git",
-      tag:      "v0.27.1",
-      revision: "5fbebf9d177edcc7af06c36c78728fdd357bf964"
+  url "https://github.com/moby/buildkit/archive/refs/tags/v0.28.1.tar.gz"
+  sha256 "1e7a0c031c038a7399eacf52655c3511ce5f0d83f1d7c821fb44821387a76e2c"
   license "Apache-2.0"
   head "https://github.com/moby/buildkit.git", branch: "master"
 
@@ -16,18 +15,18 @@ class Buildkit < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "b871eaa7b12cb7567223cc16da4cc2919fcbc865a7e6afd80640b4cc8fb9f2e3"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "b871eaa7b12cb7567223cc16da4cc2919fcbc865a7e6afd80640b4cc8fb9f2e3"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "b871eaa7b12cb7567223cc16da4cc2919fcbc865a7e6afd80640b4cc8fb9f2e3"
-    sha256 cellar: :any_skip_relocation, sonoma:        "4c7a1195305ac0833f660da563d4482c36a2f7e0e08b4fb1ecae9e368fea61c9"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "37070c5364aec2ca407e49e9098d29a671c650dd6e2daea11aab4619f84b68e0"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cd9e4c766c82313476363e9514d467faa9557f3bac3a6d15fe3766be078b0086"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "492e0bc2ab81e09910a2f7f8545be1d15c9679266d901f5b23d550a3ae1c4ba5"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "492e0bc2ab81e09910a2f7f8545be1d15c9679266d901f5b23d550a3ae1c4ba5"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "492e0bc2ab81e09910a2f7f8545be1d15c9679266d901f5b23d550a3ae1c4ba5"
+    sha256 cellar: :any_skip_relocation, sonoma:        "68dfcb64ef88289c777b1eec6214e3285a69dc115cc4f96db0387d1224e7e863"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "463c6bf7d03715a14f7166347409ae945a19d090f9a77fac1fc3ff08550c77a4"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4f9fcb73ecf291b0a0adbd0451c4a3f130cd1011b705b6711ce2e74e2cced235"
   end
 
   depends_on "go" => :build
 
   def install
-    revision = Utils.git_head
+    revision = build.head? ? Utils.git_short_head : tap.user
     ldflags = %W[
       -s -w
       -X github.com/moby/buildkit/version.Version=#{version}
@@ -38,6 +37,15 @@ class Buildkit < Formula
     system "go", "build", "-mod=vendor", *std_go_args(ldflags:, output: bin/"buildctl"), "./cmd/buildctl"
 
     doc.install Dir["docs/*.md"]
+  end
+
+  def caveats
+    on_linux do
+      <<~EOS
+        The daemon component is provided in a separate formula:
+          brew install buildkitd
+      EOS
+    end
   end
 
   test do

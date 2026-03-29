@@ -1,18 +1,18 @@
 class CargoRelease < Formula
   desc "Cargo subcommand `release`: everything about releasing a rust crate"
   homepage "https://github.com/crate-ci/cargo-release"
-  url "https://github.com/crate-ci/cargo-release/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "59ca4bffc4a02c2fd2be1b5088706732330dfa7ec862072bdb17628c80c02327"
+  url "https://github.com/crate-ci/cargo-release/archive/refs/tags/v1.1.2.tar.gz"
+  sha256 "7121921bfd2bb03ef99e70296d672d2d6838b32c7407d50f9915c5d4ee28461a"
   license any_of: ["Apache-2.0", "MIT"]
   head "https://github.com/crate-ci/cargo-release.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "66d67373d5bec8bfdd7d5e34df9eb01531529e16df2b1104491cdc2b4d534cd6"
-    sha256 cellar: :any,                 arm64_sequoia: "81dc91ab7b02cd5d1a8aaca7ed782eddfacd5b94564211ec4a9befaf09cd4a8a"
-    sha256 cellar: :any,                 arm64_sonoma:  "1c01db976b179c5bdd55c623e804053a59e1ecb488fad816ad1975c20cdc2f23"
-    sha256 cellar: :any,                 sonoma:        "380b356d1e90e4d486c24a8feb95134c53722526f574bf9435a89c8d76acd471"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "a31973474c2b5ed40badd8b421145bc2f3f8c89d83fae304512d50854e3f313f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8433d5d1e4bde72b3ac3dea40a742aaeb7dc703aaf09ff89d316edaa3815d5f8"
+    sha256 cellar: :any,                 arm64_tahoe:   "c834f40c75a5bb29d2f0abd1ade85f9bf28bef15aadf7a3f38e95404f3f1fe9f"
+    sha256 cellar: :any,                 arm64_sequoia: "d7d6c2b6e9e1d0ee610d5be134adbbdeb27f574abf803083d163d5267ca7e94d"
+    sha256 cellar: :any,                 arm64_sonoma:  "8da7ca9e8d700f761590f6a5b53d50219f871801d2fadc4903a0f349b422a748"
+    sha256 cellar: :any,                 sonoma:        "9155960fc4db70389d95227247e5a67bbf9937b3209b78350895a36208b19fe8"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "17a1f513fe5f9c04cc2941ed39e17646458f0a12ba9671f9aa59cd8f04de3710"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "94364844f0438fc1e0fd8a031780a0f662a79bf4fd1b1ccb52dcfa7fb9c8bd43"
   end
 
   depends_on "pkgconf" => :build

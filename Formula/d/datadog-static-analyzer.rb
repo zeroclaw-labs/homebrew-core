@@ -1,18 +1,18 @@
 class DatadogStaticAnalyzer < Formula
   desc "Static analysis tool for code quality and security"
   homepage "https://docs.datadoghq.com/security/code_security/static_analysis/"
-  url "https://github.com/DataDog/datadog-static-analyzer/archive/refs/tags/0.7.5.tar.gz"
-  sha256 "424982e79f60938ec82d3ae51a47c6608dcd4e27fc4e8e19e4cdcca337453c77"
+  url "https://github.com/DataDog/datadog-static-analyzer/archive/refs/tags/0.7.9.tar.gz"
+  sha256 "8847ae9f4e20378d015755f1a6408f5da42f18c244dca3e149083db15800e190"
   license "Apache-2.0"
   head "https://github.com/DataDog/datadog-static-analyzer.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "e159cec7cde2ae8534adc13833ebbbd0d12121171dca8bd070cd806491376e31"
-    sha256 cellar: :any,                 arm64_sequoia: "4858a2d67ea728c540ef41286fb19c42bd0cdd4ab79e6c69987c6ba96f2dd795"
-    sha256 cellar: :any,                 arm64_sonoma:  "9f715fcca8f232575467f2873fe467ac733ad2623176254281bf5a76076f86cc"
-    sha256 cellar: :any,                 sonoma:        "b87962ac005b020a707ae2e7d4f86dc13af1d6560e7c7d439bc026f74f6aa266"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "3f74675529d2c28c6dc22403d9157ebee46601971e31fccf8dad1bf514bd70d1"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "95802573ad14d5e77e4ef27647be1aa23e04dae7b3392f8eda42849789b9f073"
+    sha256 cellar: :any,                 arm64_tahoe:   "cada71c9a09d11e16f6cf2173adcaf9a6688043d1362ab5af97ccf95959a6709"
+    sha256 cellar: :any,                 arm64_sequoia: "cbe6978c266a448216204761d6d2eba453ebc6451c8f7e5bf72f60aa6f8f582e"
+    sha256 cellar: :any,                 arm64_sonoma:  "67a870265dc236ad45b444105dd87f0ffef6a53958acf4ab727af4ea91a1c188"
+    sha256 cellar: :any,                 sonoma:        "bb595af72d4266a4ee526e4fcd82e9076807243438dbaef7c95ce007d9da8951"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "f450c7ded456dde2fb662dd781d5f58a903a2829249664633acf5cbb12fda0de"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "df76e303b8332d0b6efee7df7a1b430607f357fb908867aeb40bd8c674d84e23"
   end
 
   depends_on "pkgconf" => :build

@@ -4,9 +4,10 @@ class SwiftProtobuf < Formula
   # We use a git checkout as swift needs to find submodule files specified
   # in Package.swift even though they aren't built for `protoc-gen-swift`
   url "https://github.com/apple/swift-protobuf.git",
-      tag:      "1.35.0",
-      revision: "9bbb079b69af9d66470ced85461bf13bb40becac"
+      tag:      "1.36.1",
+      revision: "a008af1a102ff3dd6cc3764bb69bf63226d0f5f6"
   license "Apache-2.0"
+  compatibility_version 1
   head "https://github.com/apple/swift-protobuf.git", branch: "main"
 
   livecheck do
@@ -15,12 +16,12 @@ class SwiftProtobuf < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "40add01b4b474eb7352cae5fb0fefbb55d54262a9c4126a979fe7e356f5f7417"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "35ec08383e8dcd046248b2c17ad0044e991e3a63dba3d6670e95e467120ba997"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "fde52b87615ef6e9fffecc1bc30bd7850db5ffd14791eece49c4b465337f6ede"
-    sha256 cellar: :any_skip_relocation, sonoma:        "c4e744941eb16f181df3d71593d1cf51acf1a0a39a1ca0782cdfb3766b8acd48"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "5aa510a0371de3ee0b911ee09b5bc1c9a86ddf6c5b95cf588319777206bbdf6c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "fd8c57805de55227e63778d185809741b5c702e9fd6e973e69b60e2a5e7427ee"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "962357c54697ef0b68e53275180366324f6a3dfc1f0326d8fb0378703f4efcc9"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "89a228b39f319f3664c1d1bd5f1c68f06d74b18a718878cab4dd9a6f82bd387d"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "e6c3757ce0959b9954cc7d1d430484300f80b61f259efed2935ac33057985a60"
+    sha256 cellar: :any_skip_relocation, sonoma:        "783894ca4a5261c06863ce2845ecb1d38296aa8682cda329487d66593420be02"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "70cc31ea8f8aec3f9312533bcc4d8aad951d71e1f4579ace586c75b2632cc340"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "247121346cdabbc667e686b09343a4a87432a5dd66662dbf8dcfcb3f001ff144"
   end
 
   depends_on xcode: ["15.3", :build]

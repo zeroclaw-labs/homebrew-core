@@ -1,18 +1,18 @@
 class AutoEditor < Formula
   desc "Effort free video editing!"
   homepage "https://auto-editor.com"
-  url "https://github.com/WyattBlue/auto-editor/archive/refs/tags/29.8.0.tar.gz"
-  sha256 "f6b982c70d1e018c9d6742bb4abcf16a1575cd6ea80fec109a3745d043ecb234"
+  url "https://github.com/WyattBlue/auto-editor/archive/refs/tags/30.1.0.tar.gz"
+  sha256 "75fb7e9bebaaea5b646555d6352449011a69f8bfbba0d8b54e40410f6bfca3fe"
   license "Unlicense"
   head "https://github.com/WyattBlue/auto-editor.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "5057d324c6811e0e9ba023d4830f8e85beb8fb78de6f56411d0fc445395be1a5"
-    sha256 cellar: :any,                 arm64_sequoia: "b250ad0c4a593c0ff22d883105f8222251d9cbdc379450e8b8055c0e5a8c146b"
-    sha256 cellar: :any,                 arm64_sonoma:  "b9ffee857e8498249630024f774c13fed7fb3df155c1f5d51d6d8cc595cc15b3"
-    sha256 cellar: :any,                 sonoma:        "10bf517529de2a9d109f7254a63b1cb80e567bba631344db02f5734be492a936"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "95c8c322fa4645e1a26ef89d6e62c2114c58c99751829ee056b1ef0188e444a5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1c6d080de69090aa6d1070be32fecfebe4e682137e3a106f5ec38f765ef2355a"
+    sha256 cellar: :any,                 arm64_tahoe:   "6ab4a6eb21a40173166d9b18c1236af5c38e9da87c4eb4f1e7ed1bc1fb025a32"
+    sha256 cellar: :any,                 arm64_sequoia: "a732ff45764e6dcf61dd307a41889087678c30e2e58daab7a3a83c498b25affc"
+    sha256 cellar: :any,                 arm64_sonoma:  "f57cf13d2bdd1ac62d64946375ced35a4cbd5bcb5fc7894381e9b324a1c96a96"
+    sha256 cellar: :any,                 sonoma:        "8c02df206c2009bccad8226bda7897113ef1ac376464149004aa032b7e61186f"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "563a0aa5271ed95d0adbbdd65b91fc1143e40046da0d77ce993170aa3b3d78bf"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "9243fa2e2273207a4d434806a350b34b5389b7beece5b3dd099c553f0ff65bb7"
   end
 
   depends_on "nim" => :build
@@ -30,8 +30,8 @@ class AutoEditor < Formula
     ENV["DISABLE_VPL"] = "1"
     ENV["DISABLE_WHISPER"] = "1"
     system "nimble", "make"
-    generate_completions_from_executable("nimble", "zshcomplete", "--silent", shells: [:zsh])
     bin.install "auto-editor"
+    generate_completions_from_executable(bin/"auto-editor", "completion", "-s", shells: [:zsh])
   end
 
   test do

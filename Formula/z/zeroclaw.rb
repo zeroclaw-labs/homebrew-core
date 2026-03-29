@@ -1,21 +1,22 @@
 class Zeroclaw < Formula
   desc "Rust-first autonomous agent runtime"
   homepage "https://github.com/zeroclaw-labs/zeroclaw"
-  url "https://github.com/zeroclaw-labs/zeroclaw/archive/refs/tags/v0.1.6.tar.gz"
-  sha256 "e4536eafb945e1a80ce6616197521a0be3267075ac9916be45232ba7448989d9"
-  license "MIT"
-  head "https://github.com/zeroclaw-labs/zeroclaw.git", branch: "main"
+  url "https://github.com/zeroclaw-labs/zeroclaw/archive/refs/tags/v0.6.7.tar.gz"
+  sha256 "54d62c4dde87475f003b0404df1d343e86526df103eaf2045f961b1921871a77"
+  license any_of: ["Apache-2.0", "MIT"]
+  head "https://github.com/zeroclaw-labs/zeroclaw.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "3f61f1c9b336b2139bbe433dbb15b23435ae7387757886bd914dfb9ff16e30f0"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "ccd7216773b0071236998998dcf77b5f82def10fbe81cff2018155bed7fa3fab"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "706f51e08df2a5eb5ad52a45adb7071ee4c4ad5403387634b680eb89b235f494"
-    sha256 cellar: :any_skip_relocation, sonoma:        "630614a79ca9bcc1beed4016a66f67a2317f63d9c47fc826a817171240e4573d"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "e06e587f7fea740d1cd668c03868511ef4d60aeef58677642ed3526329f59fd7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7c403b172342c910cffdecf9f5d879b660e66193e34321a861296cd3b63c39c3"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "e5957d401189f7c723f3c97361bed9821c38d19e9993a5393cfbb29245c3cb09"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "f4d7cdd06dfd62765327213c2c8f9156247dd08529736c9c514f20c5ae5ccbbe"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "3ff54a7ed37f689538f7a8484fb41770b6682c43eb5dadc3b067f34f361bbd16"
+    sha256 cellar: :any_skip_relocation, sonoma:        "5e492d5425b7d1e62caa87df276dee5c99373987227280ab86db39fb1d2c8efe"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "a8deed7f3f096d8ec84a84689205e2cd193e626030c2dc4cc948d47ac89c6177"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1e63c0dcb759ddfda63c8f901be3f08a43eafe312d10d324030e10215bf2da15"
   end
 
   depends_on "rust" => :build
+  depends_on "node" => :build
 
   def install
     system "cargo", "install", *std_cargo_args

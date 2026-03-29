@@ -1,9 +1,10 @@
 class Gh < Formula
   desc "GitHub command-line tool"
   homepage "https://cli.github.com/"
-  url "https://github.com/cli/cli/archive/refs/tags/v2.87.2.tar.gz"
-  sha256 "b36313ba276842bcdc59d40d2f3497fe373fa19ec0d54bde72594134631cd538"
+  url "https://github.com/cli/cli/archive/refs/tags/v2.89.0.tar.gz"
+  sha256 "bc9c11f75e4aeb7e1f0bd5f543a3edabb8958655025f8cdc3d9bbe14435a7441"
   license "MIT"
+  compatibility_version 1
   head "https://github.com/cli/cli.git", branch: "trunk"
 
   livecheck do
@@ -14,12 +15,12 @@ class Gh < Formula
   no_autobump! because: :bumped_by_upstream
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "3b3d633d83ef4521236e78593c80c69e2a4760f7cdbf265e477b7eda2bf9822b"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "e7cde50afee611e7781566884e112102ee4015e0cd4f1f86da8b65f579aba83d"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "84983acde47257e3b8680792555f2aed3207dcc6a0164bcc9fc22b834d55ff74"
-    sha256 cellar: :any_skip_relocation, sonoma:        "01ea8cb8b3dde3ad4b98eddd4067d42ad8b94135657aa20c65f7c795e726ed39"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "1e099834e0662fe1858049f99ca39b0e4637331c95b036fb6ec34ba4c6fe720a"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f34294a1221ce3660ce18c27cf8684f085cff0442a8f4798a024b87195b80b39"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "d38b4c92151619a22bbe519d6ee37e63d6e9ebc10159092e207b1fe2c5acd342"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "1fa5f8402592fabc9f8eb4178e5c861c2f8810a00082bc2cb0f965129376ffe9"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "2a9440379ecca91536cf172e877fd3ea612d7ad352b6022434a79b3b3fd220d2"
+    sha256 cellar: :any_skip_relocation, sonoma:        "c3e174524b1516a9ef6ef476fa6815d611b80caec8c0d8f5ff61c2438d609321"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "e06003683b8fea47b5088494f97a1bd547129a26547112ea612b9c251f678a61"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "9d34f1d19d365cfe3b11ab92fbca00bd02a6c69b75d799b7569f4c37d59c29c7"
   end
 
   depends_on "go" => :build

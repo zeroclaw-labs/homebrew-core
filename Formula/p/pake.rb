@@ -1,17 +1,17 @@
 class Pake < Formula
   desc "Turn any webpage into a desktop app with Rust with ease"
   homepage "https://github.com/tw93/Pake"
-  url "https://registry.npmjs.org/pake-cli/-/pake-cli-3.9.1.tgz"
-  sha256 "e25fe822078ff039a67cc7767e336c34789ba0a69a868c47e58dfdf147851138"
+  url "https://registry.npmjs.org/pake-cli/-/pake-cli-3.11.1.tgz"
+  sha256 "6f8d7d65bfcd276d64f37b98dc0d6f5870cf67fc5cf539031f3f15b5336d3056"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "175c5d2eb441acce5943caf925570031a5281ea543f8f83c875cd52b53125fed"
-    sha256 cellar: :any,                 arm64_sequoia: "615ccfeb7baa898ea9894dc59ce162a896a3538b6c1c67ebc992fd0798c52e8f"
-    sha256 cellar: :any,                 arm64_sonoma:  "615ccfeb7baa898ea9894dc59ce162a896a3538b6c1c67ebc992fd0798c52e8f"
-    sha256 cellar: :any,                 sonoma:        "47474613a239da2e1549e69493be21b14cf46ee16562f0009e72dacca7d225e3"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "dc13f5010dc2d0bce4ef2af97a71282ccd7a1facf47bbeef08b28d8a5ccde2bc"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f3b54e4ba757d1710503226c50a0608d8d57cb4e08d9c3859a2f076dceeed7f4"
+    sha256 cellar: :any,                 arm64_tahoe:   "1ecf06c6cae38aaed3c71bcc32d7362153185090a364ab5bbd5dc5e208197f7f"
+    sha256 cellar: :any,                 arm64_sequoia: "150fd90be7f64564e3aae37f0f9d0b758599bc7678bc27e802af2f7b27c198bb"
+    sha256 cellar: :any,                 arm64_sonoma:  "150fd90be7f64564e3aae37f0f9d0b758599bc7678bc27e802af2f7b27c198bb"
+    sha256 cellar: :any,                 sonoma:        "69bd640a1539c8824b5ec36909aec8688ed16f61b8b868f27e761e83f633edb2"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "084333308992eb5645411eb2964d5aa5bb5aeba7bfed1f379a85756efb940a8a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "bd335c2a904a3aad67c439ee09d7212081234a5421b97665689f2adf95a2c90c"
   end
 
   depends_on "node"
@@ -22,8 +22,8 @@ class Pake < Formula
   # Resources needed to build sharp from source to avoid bundled vips
   # https://sharp.pixelplumbing.com/install/#building-from-source
   resource "node-addon-api" do
-    url "https://registry.npmjs.org/node-addon-api/-/node-addon-api-8.5.0.tgz"
-    sha256 "d12f07c8162283b6213551855f1da8dac162331374629830b5e640f130f07910"
+    url "https://registry.npmjs.org/node-addon-api/-/node-addon-api-8.6.0.tgz"
+    sha256 "e3029e9581015874cc794771ec9b970be83b12c456ded15cfba9371bddc42569"
   end
 
   resource "node-gyp" do
@@ -32,17 +32,17 @@ class Pake < Formula
   end
 
   def install
-        ENV["SHARP_FORCE_GLOBAL_LIBVIPS"] = "1"
+    ENV["SHARP_FORCE_GLOBAL_LIBVIPS"] = "1"
 
-        system "npm", "install", *std_npm_args, *resources.map(&:cached_download)
-        bin.install_symlink libexec.glob("bin/*")
+    system "npm", "install", *std_npm_args, *resources.map(&:cached_download)
+    bin.install_symlink libexec.glob("bin/*")
 
-        node_modules = libexec/"lib/node_modules/pake-cli/node_modules"
-        rm_r(libexec.glob("#{node_modules}/icon-gen/node_modules/@img/sharp-*"))
+    node_modules = libexec/"lib/node_modules/pake-cli/node_modules"
+    rm_r(libexec.glob("#{node_modules}/icon-gen/node_modules/@img/sharp-*"))
 
-        libexec.glob("#{node_modules}/.pnpm/fsevents@*/node_modules/fsevents/fsevents.node").each do |f|
-          deuniversalize_machos f
-        end
+    libexec.glob("#{node_modules}/.pnpm/fsevents@*/node_modules/fsevents/fsevents.node").each do |f|
+      deuniversalize_machos f
+    end
   end
 
   test do
@@ -57,8 +57,8 @@ class Pake < Formula
       io = IO.popen("#{bin}/pake index.html --use-local-file --iterative-build --name test")
       sleep 5
     ensure
-          Process.kill("TERM", io.pid)
-          Process.wait(io.pid)
+      Process.kill("TERM", io.pid)
+      Process.wait(io.pid)
     end
 
     assert_match "No icon provided, using default icon.", io.read

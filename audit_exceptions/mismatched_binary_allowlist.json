@@ -2,6 +2,7 @@
   "afl++": "share/afl/testcases/others/elf/small_exec.elf",
   "aws-sam-cli": "libexec/lib/python*/site-packages/samcli/local/rapid/aws-lambda-rie-*",
   "balena-cli": "**/*",
+  "cyan": "libexec/lib/python*/site-packages/cyan/extras/**/*",
   "elf2uf2-rs": "share/elf2uf2-rs/examples/*.elf",
   "faust": "share/faust/android/app/lib/libsndfile/lib/*/libsndfile.so",
   "ghidra": "libexec/docs/GhidraClass/ExerciseFiles/Advanced/*",

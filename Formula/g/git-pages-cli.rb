@@ -1,18 +1,18 @@
 class GitPagesCli < Formula
   desc "Tool for publishing a site to a git-pages server"
   homepage "https://codeberg.org/git-pages/git-pages-cli"
-  url "https://codeberg.org/git-pages/git-pages-cli/archive/v1.5.2.tar.gz"
-  sha256 "1e60a9b03a99558dca18b6891c2028386450ec6f688d7315c6a5ce91562a32ea"
+  url "https://codeberg.org/git-pages/git-pages-cli/archive/v1.8.0.tar.gz"
+  sha256 "e20c807fb781fa385c9430eda1173ac2e1d1d22b36108b19bc9b43285341df81"
   license "0BSD"
   head "https://codeberg.org/git-pages/git-pages-cli.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "cfeef6686b9ff0a6bc79be6c0feedbfc8a32bd3b04cd8604e80652aae3f37328"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "cfeef6686b9ff0a6bc79be6c0feedbfc8a32bd3b04cd8604e80652aae3f37328"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "cfeef6686b9ff0a6bc79be6c0feedbfc8a32bd3b04cd8604e80652aae3f37328"
-    sha256 cellar: :any_skip_relocation, sonoma:        "4ec5eb9425d07b01fe5eb95fe0ab26266488acd6da358d60f8b096bfdb95615d"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "8d0fbabce7b4ac8ed7718b536b3fb445c09a9e8cd02b366a5312fc6527a1c353"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7c5526fa7a711fd499ce90a5c3629a7a8c462256eecc3888cf7e1f4c2074c10c"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "9cdc501515dc4dd308a93c962ae70111d37ba20635eedbfdbcc2f7db2a8b1abe"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "9cdc501515dc4dd308a93c962ae70111d37ba20635eedbfdbcc2f7db2a8b1abe"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "9cdc501515dc4dd308a93c962ae70111d37ba20635eedbfdbcc2f7db2a8b1abe"
+    sha256 cellar: :any_skip_relocation, sonoma:        "8b69804391f4e12954b7c36ecd378de5db44a6c54c95ff3980ecc75e85cebfa2"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "b1003a717c0d4b252ad3c6008ef145b6bbffe1725d8c6b68a78d567802f9fc16"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "03f2e817006428ec2b13914eb043246ddbe938a95bb15a74f057642183c9b2a4"
   end
 
   depends_on "go" => :build

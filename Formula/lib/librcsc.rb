@@ -4,16 +4,15 @@ class Librcsc < Formula
   url "https://github.com/helios-base/librcsc/archive/refs/tags/rc2024.tar.gz"
   sha256 "81a3f86c9727420178dd936deb2994d764c7cd4888a2150627812ab1b813531b"
   license "LGPL-3.0-or-later"
-  revision 3
+  revision 5
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any,                 arm64_tahoe:   "a20cee1adaa0278ef3ce5a74606d817cb4b7bd6abb89361f614b9fe81be00294"
-    sha256 cellar: :any,                 arm64_sequoia: "4d80e9427a40d0826f626863e36ee0b7e12ae9fbe97e4fd7836f7a6891751ade"
-    sha256 cellar: :any,                 arm64_sonoma:  "38f735148b9b5c929383466a30e2cfe3a101d01a8db625c2442723a346001af1"
-    sha256 cellar: :any,                 sonoma:        "80c70269e579dd196e1ef8ab412f81193f2e1b923acf712f6572cdc6a96f42fc"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "5e285a61d2b8e1330ae4a9a9e730cec351f120521e965224e20797aed6cc9e34"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "33c93e87177779c7eda1780874343bc89b07898f4d1fc04622802afc270ca9c3"
+    sha256 cellar: :any,                 arm64_tahoe:   "74ea73f6b0d78ec266f4016283e606eea8c53d895b6232c4bbf1d7d24ed70615"
+    sha256 cellar: :any,                 arm64_sequoia: "59505e70c27a692aa3083b9254f3232bf7ff5bd0061a25719def62c627d42a9e"
+    sha256 cellar: :any,                 arm64_sonoma:  "30b26f4488ae162d627659a9bec3b1bc576f96207820f76b7799a8004d164f18"
+    sha256 cellar: :any,                 sonoma:        "1e6cd08d22ab9fe82d182aa199656008b476686058936f4cb9e498f9bfee7d9e"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "de295c08f63b8ce0da6bccfbe35a825d2b1eadf26e1da63d6fa2e239020b77c5"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1b29e812c55ae1c5c81b60b6006404cfe19d85d63266c92f567c7d82beb9b20a"
   end
 
   depends_on "autoconf" => :build

@@ -1,9 +1,10 @@
 class Imagemagick < Formula
   desc "Tools and libraries to manipulate images in select formats"
   homepage "https://imagemagick.org/index.php"
-  url "https://imagemagick.org/archive/releases/ImageMagick-7.1.2-13.tar.xz"
-  sha256 "968e022c8c7ee620680bac658628ef0f582be7b8aa71b386a9a9d068ec17dbd2"
+  url "https://imagemagick.org/archive/releases/ImageMagick-7.1.2-18.tar.xz"
+  sha256 "abb85df40f06fddf17d031629c7ad2778a55d478a8bff80d55ffee75c90a3982"
   license "ImageMagick"
+  compatibility_version 1
   head "https://github.com/ImageMagick/ImageMagick.git", branch: "main"
 
   livecheck do
@@ -12,13 +13,12 @@ class Imagemagick < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 arm64_tahoe:   "61f5c6b74543f9d7d4524fd7717da2896e506d137ddc3ebc09e095d477d3ae85"
-    sha256 arm64_sequoia: "5c22c4d9b3b7e85109db850558118a310d56b75d37d99e15485531f24cb593be"
-    sha256 arm64_sonoma:  "a3338f001b83b52472919da7280d56b9d3612f35076b65ecaaed2503a65ae714"
-    sha256 sonoma:        "a57d7833f8664d32dfa1e49f3f293a8cb9573b2f843470b377503e4215571bbb"
-    sha256 arm64_linux:   "da62bb92372775a6a6f82e60df9fdb024ff3afe9a7afaf78c24ae48980815af8"
-    sha256 x86_64_linux:  "6e66104d9fbf0cb911e1d85d24e0cc529131466c32650d8e92fa14ba57af93ce"
+    sha256 arm64_tahoe:   "e84d15066ccb7643ddbab351b309185f33efa3e9a50d5f26bd9116c901fdd5d3"
+    sha256 arm64_sequoia: "08fadb30aed6727eba073cbd31da801dfdecfd461ad2d94813bda0df3e4508ca"
+    sha256 arm64_sonoma:  "9cc795f1033162f4a0a23c1b548b7b872a9675cda3cd45fee064bc697febe82a"
+    sha256 sonoma:        "4b78871f9c705270d361e057047d8d79eae4c138e9e8fbd1d928d60dcb24c2d9"
+    sha256 arm64_linux:   "72dafd7346fbb523ffd1f547ce587e3d9d3dd4788006853505333165e932a12c"
+    sha256 x86_64_linux:  "4f630c1afd065ebabc9ed34a7fc51f321ead9d63eb573560ec19ddc7a4cd23cd"
   end
 
   depends_on "pkgconf" => :build
@@ -28,6 +28,7 @@ class Imagemagick < Formula
   # current year (2026).
   # Add other dependencies to imagemagick-full formula or consider making
   # formulae dependent on imagemagick-full.
+  depends_on "freetype"
   depends_on "glib"
   depends_on "jpeg-turbo"
   depends_on "libheif"

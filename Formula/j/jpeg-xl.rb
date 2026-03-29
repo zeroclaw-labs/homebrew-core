@@ -4,6 +4,7 @@ class JpegXl < Formula
   url "https://github.com/libjxl/libjxl/archive/refs/tags/v0.11.2.tar.gz"
   sha256 "ab38928f7f6248e2a98cc184956021acb927b16a0dee71b4d260dc040a4320ea"
   license "BSD-3-Clause"
+  compatibility_version 1
 
   livecheck do
     url :stable
@@ -42,7 +43,13 @@ class JpegXl < Formula
   # https://github.com/libjxl/libjxl/tree/v#{version}/third_party
   resource "sjpeg" do
     url "https://github.com/webmproject/sjpeg/archive/94e0df6d0f8b44228de5be0ff35efb9f946a13c9.tar.gz"
+    version "94e0df6d0f8b44228de5be0ff35efb9f946a13c9"
     sha256 "ac94917fe745a674eabf1e044f23ec55cd5a548c9869c06ec4b19da14ee0227d"
+
+    livecheck do
+      url "https://raw.githubusercontent.com/libjxl/libjxl/refs/tags/v#{LATEST_VERSION}/deps.sh"
+      regex(/THIRD_PARTY_SJPEG="(\h+)"/i)
+    end
   end
 
   def install

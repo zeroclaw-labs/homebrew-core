@@ -1,8 +1,8 @@
 class Elvis < Formula
   desc "Erlang Style Reviewer"
   homepage "https://github.com/inaka/elvis"
-  url "https://github.com/inaka/elvis/archive/refs/tags/4.2.2.tar.gz"
-  sha256 "7ff3ef4693f635ec4e8f6cb80f22a055b130ca5505c07fe7b0ab19c00a78b830"
+  url "https://github.com/inaka/elvis/archive/refs/tags/5.0.2.tar.gz"
+  sha256 "a8dd3aa92da9f7a12314d3bde9241383b583f2fe5eca77c2bae477f725d2277a"
   license "Apache-2.0"
   head "https://github.com/inaka/elvis.git", branch: "master"
 
@@ -12,12 +12,12 @@ class Elvis < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "f488075456e0fe496ba31daa3b4464ac517a1ceb58a45be8c082dd85edfcaf02"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "43fa5e632f7dbad609f54c03105708c9e24863f679648c6c92edd1cc83f380d4"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "2ce301c19150868c1a316f6a3ab2e13ee91ecc9e400c091e8ab097bd97a45c16"
-    sha256 cellar: :any_skip_relocation, sonoma:        "a7b32ff93ace242c143bc999ce80b1b51c20287ce9b07be5a5441ed216518818"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "eec73c6ab1db79543297c2776568980600e93d049f7e8dfd1a7f66cbde3cbb5f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6f50977c771610e1faa1a4b9c1f27479bcc0565af33e2cf61ca6078460218d77"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "1cf87c68bb955d1b9d65bbb1b2732053486e7148ae8a3908ba28831da6efbfba"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "13bf8e6b24e90e901a6e41afd5df15218f4957fd0bb343dabfc09cd563ffc527"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "db41f1ab4748593ea1737c6ea31ee51f626d17efc0f3ce610fc6b583b02ea143"
+    sha256 cellar: :any_skip_relocation, sonoma:        "d02766dbc8b1f777fd2301ce80a3ead1fa54885863ed955993109b6a47db15f3"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "f621b6628aac44d90e702ac097f6762f4f7a424bfcde477ef13209d076adcc99"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "dafc70374b5bd621925cd7cb28e51b8398cfdbcfcdeae6339a38cf6c6da16c2e"
   end
 
   depends_on "rebar3" => :build
@@ -33,20 +33,23 @@ class Elvis < Formula
   end
 
   test do
-    (testpath/"src/example.erl").write <<~EOS
+    (testpath/"src/example.erl").write <<~ERLANG
       -module(example).
 
       -define(bad_macro_name, "should be upper case").
-    EOS
+    ERLANG
 
-    (testpath/"elvis.config").write <<~EOS
-      [{elvis, [
+    (testpath/"elvis.config").write <<~CONFIG
+      [
         {config, [
-          \#{ dirs => ["src"], filter => "*.erl", ruleset => erl_files }
+          \#{
+            files => ["src/*.erl"],
+            ruleset => erl_files
+          }
         ]},
         {output_format, parsable}
-      ]}].
-    EOS
+      ].
+    CONFIG
 
     expected = <<~EOS.chomp
       At line 3, column 2, the name of macro "bad_macro_name" is not acceptable by regular expression

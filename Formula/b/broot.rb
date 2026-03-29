@@ -1,18 +1,18 @@
 class Broot < Formula
   desc "New way to see and navigate directory trees"
   homepage "https://dystroy.org/broot/"
-  url "https://github.com/Canop/broot/archive/refs/tags/v1.55.0.tar.gz"
-  sha256 "3049d055f37bfdc3b2057a3e2186cfdb58b596e1586b6b129698b350a80cfda3"
+  url "https://github.com/Canop/broot/archive/refs/tags/v1.56.2.tar.gz"
+  sha256 "3e7be4252c76565f6d71b34bd07d26e1444b9ac2e1c8271c724f6e866fe75565"
   license "MIT"
   head "https://github.com/Canop/broot.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "d96b89249e040c7698aa4df2162affcfa9cd7c53ba829a439afa9695707cece3"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "db424a506333122caffd1b389ee1b81338d8c74ddf358905bde598190838ecb5"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "d66c44400c2e5ec13a2d92591e82595d5ada51eb24311ea149c0812e6836cec4"
-    sha256 cellar: :any_skip_relocation, sonoma:        "14ff39658185bbbbf3accc4d848b038ff72e8225b0c92e7809c7af6645543078"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "74f0ebab5147d0e0b648be28b96e62fe719a7a93b8c4dab8b58ebd5557a4d5a8"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "63b6d9b6287be016a97d08267c85d3bfce54f0f16976ada7733c9209db56d655"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "7f2c4d66083294b14dc65242efa350a2350a90e0211e475457561840d3613ea7"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "22fabe8fded7f153657a67506918252f81fc18365b4ca4a1f1476616e9bb33d5"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "58b2199c594695a9003b7e034393f31bab46dba5da94d837d120d15f8de2770e"
+    sha256 cellar: :any_skip_relocation, sonoma:        "505393e6ec36711156984a5c8910545dabeeda1f041d93e387bd2b2ecadf1ad8"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "3985735018a7aaa65e72544d3a0f66d6ff28d43a5efb2c171fafa569e28a65f4"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "904eec43923040d62604c9c71c689e99537bea1f994cbe3e62c78ae7f8282f05"
   end
 
   depends_on "rust" => :build

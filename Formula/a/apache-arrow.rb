@@ -5,15 +5,17 @@ class ApacheArrow < Formula
   mirror "https://archive.apache.org/dist/arrow/arrow-23.0.1/apache-arrow-23.0.1.tar.gz"
   sha256 "bd09adb4feac11fe49d1604f296618866702be610c86e2d513b561d877de6b18"
   license "Apache-2.0"
+  revision 4
+  compatibility_version 1
   head "https://github.com/apache/arrow.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "06690602b06dae05b84feb5bf35cb6697cbde007650a31d094641c0fdd663525"
-    sha256 cellar: :any, arm64_sequoia: "c50dea4c901425c183cf9ed123d6ed8a4ed494cd36a97899ae639f633254cefd"
-    sha256 cellar: :any, arm64_sonoma:  "301baba08481b8802f23d06c583e9acec3505b51ba2f6467d38b856fdae04a1a"
-    sha256 cellar: :any, sonoma:        "d488dd1183d6011ccd01bcbdc420a7d6e3cf8d9be659fabafa92de049ce53eeb"
-    sha256               arm64_linux:   "c9fa9dc9798ac1fb6b1f9e8dbf2ffe65a681f1eb4fb8d6c5e06d7216e6352bf2"
-    sha256               x86_64_linux:  "3da8ad666d51d5f8918471b540cddf8f434e002f06c82cbf8d5a42a5aa669edf"
+    sha256 cellar: :any, arm64_tahoe:   "c5d6187c885655603ff7048fd1ad60ae73846e12e102e9a39776a0c7699aab45"
+    sha256 cellar: :any, arm64_sequoia: "819a1558af59c3de674285c8751e1d8a34f5a2f802022e78551557ec279df4a4"
+    sha256 cellar: :any, arm64_sonoma:  "45cdc24aa2ee100d7fa435339310d381af95fadfff78b1ea5f381ae2749c9423"
+    sha256 cellar: :any, sonoma:        "6b19cc803be96c8f317948108d582dc49fa52061dc3698d75178be75ebf7f4e0"
+    sha256               arm64_linux:   "d4cdec924f081d022069f5054b5dc50408c2e7e993f73c3a6825bd7a778ea8a1"
+    sha256               x86_64_linux:  "f20c46372a4ac2d290d7705dad63c052b33952a1b7b64b4113607cb7817e2527"
   end
 
   depends_on "boost" => :build
@@ -41,6 +43,22 @@ class ApacheArrow < Formula
 
   on_linux do
     depends_on "zlib-ng-compat"
+  end
+
+  fails_with :gcc do
+    version "12"
+    cause "fails handling PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED"
+  end
+
+  # Apply open PR to support LLVM 22
+  # PR ref: https://github.com/apache/arrow/pull/49429
+  patch do
+    url "https://github.com/apache/arrow/commit/03d40603d9f29a107a5cede0f94e6c0241cd6099.patch?full_index=1"
+    sha256 "22fdd4a15a80a7bf41b899ba1ef5fdcf8c761cbd3bbd1470cd5db2c5a543e8af"
+  end
+  patch do
+    url "https://github.com/apache/arrow/commit/7b9135aab4ce6b8a79e0037ead8093d10174e7d8.patch?full_index=1"
+    sha256 "bb08d0ddf5b3fcb8cee1c354ea0be25a2a246bbef8fd311cc89637b52090bd8e"
   end
 
   def install
@@ -77,7 +95,10 @@ class ApacheArrow < Formula
     args << if OS.mac?
       "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-dead_strip_dylibs" # Reduce overlinking
     else
-      "-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON" # Avoid versioned LLVM RPATH getting dropped
+      # TODO: Remove after moving CI to Ubuntu 24.04. Cannot use newer GCC as it
+      # will increase minimum GLIBCXX in bottle resulting in a runtime dependency.
+      ENV.llvm_clang
+      "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,--as-needed"
     end
     # ARROW_SIMD_LEVEL sets the minimum required SIMD. Since this defaults to
     # SSE4.2 on x86_64, we need to reduce level to match oldest supported CPU.

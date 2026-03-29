@@ -3,17 +3,17 @@ class Copyparty < Formula
 
   desc "Portable file server"
   homepage "https://github.com/9001/copyparty"
-  url "https://files.pythonhosted.org/packages/45/a9/dd337240491bb36a2f9282495c76dcd945135787e312d9b14652bd47a883/copyparty-1.20.7.tar.gz"
-  sha256 "1c74e7b4d33b8608f6f9a42e0af7928026195efaba30b0fb4957c447ddf6f9cb"
+  url "https://files.pythonhosted.org/packages/8d/8c/15e6df5f3bbfc329c698d15b891750c55e356c7438d399f47e69218abc9e/copyparty-1.20.13.tar.gz"
+  sha256 "4481a1f4160d688d60c277eb8fe13607a2898af0cc8438e368f7f9d85eba70cc"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "ceebda467be5ec6b880a4abbda070a31d7072b4782cdfb010f18d72b333380dd"
-    sha256 cellar: :any,                 arm64_sequoia: "905d39c18cce3e2c6bae41bcbb6e9b33620bf3586f37d68d3a688d562ef90599"
-    sha256 cellar: :any,                 arm64_sonoma:  "62815e01c8ff43579c22e19c1da26795d66ccf31ab45e13f399160b600f70930"
-    sha256 cellar: :any,                 sonoma:        "0cf871919df087529b37d47695a7eb8a43b7ee3a9c1d4c376df94a5f5b950a3c"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "bc7557ae7e06089e34edb9d6920979e7ecc0d78a3c49ef8f0d2a9a79234181f5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "975e03b4f904e76fd6e52fec551c57b7c5b3577f890e630787bce828e30f9579"
+    sha256 cellar: :any,                 arm64_tahoe:   "1453c5c11ae2eca31a28d711cdf58376a8e64c915ffa7692b94fce2e0dbaf5d6"
+    sha256 cellar: :any,                 arm64_sequoia: "9bada5dd0c7c3d2ec4266253ea5d79f1bd08d3715660e21ced0e7d376d62d610"
+    sha256 cellar: :any,                 arm64_sonoma:  "c1a3769b706e72466aea9371284f6521169368317ef1ee659876f6f531cc50d5"
+    sha256 cellar: :any,                 sonoma:        "4fb4bf7802f364d90e74f6d1722196775c7833509370e1a430af2d581bc74639"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "7e540b4fb230d34812d3b89742aa62e224dc0093e0906f63602a5111fe43f260"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0af848219a0f58ced0960b59492f7d1b9555a0fe5b0481598602b3849272e019"
   end
 
   depends_on "cmake" => :build
@@ -95,8 +95,8 @@ class Copyparty < Formula
   end
 
   resource "pyopenssl" do
-    url "https://files.pythonhosted.org/packages/80/be/97b83a464498a79103036bc74d1038df4a7ef0e402cfaf4d5e113fb14759/pyopenssl-25.3.0.tar.gz"
-    sha256 "c981cb0a3fd84e8602d7afc209522773b94c1c2446a3c710a75b06fe1beae329"
+    url "https://files.pythonhosted.org/packages/8e/11/a62e1d33b373da2b2c2cd9eb508147871c80f12b1cacde3c5d314922afdd/pyopenssl-26.0.0.tar.gz"
+    sha256 "f293934e52936f2e3413b89c6ce36df66a0b34ae1ea3a053b8c5020ff2f513fc"
   end
 
   resource "pyzmq" do

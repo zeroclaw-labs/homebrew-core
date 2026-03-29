@@ -13,6 +13,7 @@
   "cryptopp",
   "fftw",
   "fio",
+  "ggml",
   "groestlcoin",
   "handbrake",
   "highway",

@@ -3,6 +3,7 @@ class Libspatialite < Formula
   homepage "https://www.gaia-gis.it/fossil/libspatialite/index"
   license any_of: ["MPL-1.1", "GPL-2.0-or-later", "LGPL-2.1-or-later"]
   revision 4
+  compatibility_version 1
 
   stable do
     url "https://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-5.1.0.tar.gz"
@@ -21,8 +22,6 @@ class Libspatialite < Formula
     url "https://www.gaia-gis.it/gaia-sins/libspatialite-sources/"
     regex(/href=.*?libspatialite[._-]v?(\d+(?:\.\d+)+[a-z]?)\.t/i)
   end
-
-  no_autobump! because: :requires_manual_review
 
   bottle do
     sha256 cellar: :any,                 arm64_tahoe:   "ec3bff2150de386d746181a90e8a9a706a5cd0abba9fff83b982f31cec916a93"

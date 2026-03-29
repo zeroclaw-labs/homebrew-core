@@ -3,13 +3,14 @@ class AivenClient < Formula
 
   desc "Official command-line client for Aiven"
   homepage "https://aiven.io/docs/tools/cli"
-  url "https://files.pythonhosted.org/packages/a4/ba/ec076c5883ffbbd37129bc883c12549dd015cd832eb6f8c3efaabb2b0b5f/aiven_client-4.11.1.tar.gz"
-  sha256 "fa4e8f89105792bd6462ad46b025c59035101210b49019fe0cac3b89896a4819"
+  url "https://files.pythonhosted.org/packages/25/45/77d357c74969dd3d1cf80d7dc7174f35f5f34c9803335fb8e5e707cf9621/aiven_client-4.12.0.tar.gz"
+  sha256 "0cf371c02cb830e5aa1ef9fd78ca3dc4c793c78894a01fb65e42d0dc97337e42"
   license "Apache-2.0"
+  revision 1
   head "https://github.com/aiven/aiven-client.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "6b2314ee48c39cc667817ac895753c8cd75713a10573548a2d04db54305a306a"
+    sha256 cellar: :any_skip_relocation, all: "253e938b06e7cce4e417868cac1015dbb136df43a9220700179f505186d0fec4"
   end
 
   depends_on "certifi"
@@ -18,8 +19,8 @@ class AivenClient < Formula
   pypi_packages exclude_packages: "certifi"
 
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/13/69/33ddede1939fdd074bce5434295f38fae7136463422fe4fd3e0e89b98062/charset_normalizer-3.4.4.tar.gz"
-    sha256 "94537985111c35f28720e43603b8e7b43a6ecfb2ce1d3058bbe955b73404e21a"
+    url "https://files.pythonhosted.org/packages/7b/60/e3bec1881450851b087e301bedc3daa9377a4d45f1c26aa90b0b235e38aa/charset_normalizer-3.4.6.tar.gz"
+    sha256 "1ae6b62897110aa7c79ea2f5dd38d1abca6db663687c0b1ad9aed6f6bae3d9d6"
   end
 
   resource "idna" do
@@ -28,8 +29,8 @@ class AivenClient < Formula
   end
 
   resource "requests" do
-    url "https://files.pythonhosted.org/packages/c9/74/b3ff8e6c8446842c3f5c837e9c3dfcfe2018ea6ecef224c710c85ef728f4/requests-2.32.5.tar.gz"
-    sha256 "dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf"
+    url "https://files.pythonhosted.org/packages/34/64/8860370b167a9721e8956ae116825caff829224fbca0ca6e7bf8ddef8430/requests-2.33.0.tar.gz"
+    sha256 "c7ebc5e8b0f21837386ad0e1c8fe8b829fa5f544d8df3b2253bff14ef29d7652"
   end
 
   resource "requests-toolbelt" do

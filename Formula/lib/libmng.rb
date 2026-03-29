@@ -5,8 +5,7 @@ class Libmng < Formula
   sha256 "cf112a1fb02f5b1c0fce5cab11ea8243852c139e669c44014125874b14b7dfaa"
   license "Zlib"
   revision 1
-
-  no_autobump! because: :requires_manual_review
+  compatibility_version 1
 
   bottle do
     rebuild 2

@@ -1,8 +1,8 @@
 class Solana < Formula
   desc "Web-Scale Blockchain for decentralized apps and marketplaces"
   homepage "https://www.anza.xyz/"
-  url "https://github.com/anza-xyz/agave/archive/refs/tags/v3.1.8.tar.gz"
-  sha256 "ab4c83db509065c9e4a3d2ed61280206df41c4efb13d8087a261b2b31873be4b"
+  url "https://github.com/anza-xyz/agave/archive/refs/tags/v3.1.11.tar.gz"
+  sha256 "03203cefcabef0c16f309047d577b27db81cc31cdf59551bd4f8f64ab898ffe7"
   license "Apache-2.0"
   version_scheme 1
 
@@ -12,12 +12,13 @@ class Solana < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "147c7426b3fe385342475c4a7491441bcec15e9f73557cb26005c9c7505f677d"
-    sha256 cellar: :any,                 arm64_sequoia: "ef22b3b53fdfceef8df23d81709a8ef534d0d38f97e1e2d2455140f4caddd69a"
-    sha256 cellar: :any,                 arm64_sonoma:  "d7e5787e839fd3a7a61b4cebb02ee2e7b19a1be0ab503308aca084d1cad1247a"
-    sha256 cellar: :any,                 sonoma:        "173638d6e7cf4f2869d3bb4f8383909089f39bbaa0df049747861b298326f53d"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "0cb623cac73eae2ece4b4ae422dcf4594978e85402f81049d6cb652c12f2048b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "dae4d079886974e4bd81cf42e808ddcdfb4843eaec624b6804d2f29dbc09525c"
+    rebuild 1
+    sha256 cellar: :any,                 arm64_tahoe:   "03a19d52b40ad5ba9c361684323ebb15b856d06af51477f8c37a0aad9d8c696e"
+    sha256 cellar: :any,                 arm64_sequoia: "8409ef553324c036d4adbef98768164a5d8af26faf38dd73caf3e083b172d18e"
+    sha256 cellar: :any,                 arm64_sonoma:  "577165c98b21d1dc8de83c3d38116a3bcd49902d952a9cb615abf1761b67b31d"
+    sha256 cellar: :any,                 sonoma:        "20a6d4412c008662941f7b421276c6077faea127694983f5a48f33b1f792cc6f"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "fe13435a4619971ac29a1252ecc652241562b1b0846d2ae744b590e13464cda5"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "071f0018c89949549eb0a6d56267e777d8a393a033751c2313998d6673b518c5"
   end
 
   depends_on "llvm" => :build # for libclang
@@ -30,10 +31,6 @@ class Solana < Formula
   uses_from_macos "bzip2"
 
   # Backport fixes for newer Rust
-  patch do
-    url "https://github.com/anza-xyz/agave/commit/4b0384e8d7ffdb13c9e73ebdfdc8a0e1cc8ca290.patch?full_index=1"
-    sha256 "ba8ee2f0624fe83fdfb0d198d840a115f546924d345029afda344b5a57c57f9e"
-  end
   patch do
     url "https://github.com/anza-xyz/agave/commit/8f3944b2159112b8e017b41f9c834344b32a7c59.patch?full_index=1"
     sha256 "b5c59105fd9fa22f96a5135d3c14a61f63cbd86b31f509a06574965520c11414"
@@ -51,7 +48,7 @@ class Solana < Formula
 
   def install
     # Work around until new release as fixed upstream but commits do not cleanly apply
-    ENV.append_to_rustflags "--allow unused-imports"
+    ENV.append_to_rustflags "--allow unused-imports --allow unused_unsafe"
 
     # Work around librocksdb-sys build failure with Apple libclang, "Library not loaded: @rpath/libclang.dylib"
     ENV["LIBCLANG_PATH"] = Formula["llvm"].opt_lib.to_s if OS.mac?
@@ -77,6 +74,13 @@ class Solana < Formula
     (bins + bins_dcou).each do |bin|
       system "cargo", "install", "--no-default-features", *std_cargo_args(path: bin)
     end
+
+    generate_completions_from_executable(bin/"solana", "completion", shell_parameter_format: "--shell=",
+                                                                     shells:                 [:bash, :zsh, :fish])
+    # `:pwsh` string is "pwsh" in the shell_parameter_format,
+    # so we need to write the completion manually since solana expects "powershell"
+    (pwsh_completion/"solana").write Utils.safe_popen_read({ "SHELL" => "pwsh" }, bin/"solana", "completion",
+"--shell=powershell")
   end
 
   test do

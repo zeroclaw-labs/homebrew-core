@@ -7,22 +7,20 @@ class Mysql < Formula
   mirror "https://repo.mysql.com/apt/ubuntu/pool/mysql-innovation/m/mysql-community/mysql-community_9.6.0.orig.tar.gz"
   sha256 "240061d869d5ae188c9a333845928899e9d963ccbd67865a8a2e4b6fcb67178c"
   license "GPL-2.0-only" => { with: "Universal-FOSS-exception-1.0" }
+  revision 2
 
   livecheck do
     url "https://dev.mysql.com/downloads/mysql/?tpl=files&os=src"
     regex(/href=.*?mysql[._-](?:boost[._-])?v?(\d+(?:\.\d+)+)\.t/i)
   end
 
-  no_autobump! because: :incompatible_version_format
-
   bottle do
-    rebuild 1
-    sha256 arm64_tahoe:   "89e155570b72b3a3512bac1d272d44ba3566933f8f8539111affa58fd435e140"
-    sha256 arm64_sequoia: "78491e19abf22af1e5760e52c0160037e1971f55a5ac9ae605e5a6ad2f6cb914"
-    sha256 arm64_sonoma:  "931c76cc245d2ae2cd887949dde8aa944434e67ca3a50beecf78bafd3af0d8ed"
-    sha256 sonoma:        "87618e4075f4d1ea5cac5f194271db36ce9f7741c078ad37c5979f2c6df8ac0e"
-    sha256 arm64_linux:   "b0050d3878ffc69da9fc28374bf5e811d30789030000107a09ef257407fca11a"
-    sha256 x86_64_linux:  "99be0096577eaa097709a5f7d68f4a87b5ba63a755279b41e290c8b5d50c5a10"
+    sha256 arm64_tahoe:   "4589e009eb714a89c399173d43879db1437fffce1f8e8783ab3d552596a05c0a"
+    sha256 arm64_sequoia: "ae9faee2eb29541466d91d7ea6c6a0d9f0dad5dc201fcfaea002aa5c4d00b4e1"
+    sha256 arm64_sonoma:  "ef7cced36ec02fdcae4ecb5d9c727a5c343f6a087c2286e65ee6f83a5f88599d"
+    sha256 sonoma:        "c7baa68b46cf6d48a87db98511f0c72ccc1a3d5282d15bdf4b90af6e9f949335"
+    sha256 arm64_linux:   "2e7b7990c15f0ca33fc4b290a1159fb191632bfab41eefecd824b9d790016a54"
+    sha256 x86_64_linux:  "0c4d355a4ca976b25692f2aab087aee54b9b18c18000d470aacfef1bb826b3a9"
   end
 
   depends_on "bison" => :build
@@ -51,6 +49,7 @@ class Mysql < Formula
   end
 
   on_linux do
+    depends_on "llvm" => :build if DevelopmentTools.gcc_version < 13
     depends_on "patchelf" => :build
     depends_on "libtirpc"
   end
@@ -58,8 +57,8 @@ class Mysql < Formula
   conflicts_with "mariadb", "percona-server", because: "both install the same binaries"
 
   fails_with :gcc do
-    version "9"
-    cause "Requires C++20"
+    version "12"
+    cause "fails handling PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED"
   end
 
   # Patch out check for Homebrew `boost`.
@@ -79,6 +78,10 @@ class Mysql < Formula
     (buildpath/"extra").each_child { |dir| rm_r(dir) unless keep.include?(dir.basename.to_s) }
 
     if OS.linux?
+      # TODO: Remove after moving CI to Ubuntu 24.04. Cannot use newer GCC as it
+      # will increase minimum GLIBCXX in bottle resulting in a runtime dependency.
+      ENV.llvm_clang if deps.map(&:name).any?("llvm")
+
       # Disable ABI checking
       inreplace "cmake/abi_check.cmake", "RUN_ABI_CHECK 1", "RUN_ABI_CHECK 0"
     elsif MacOS.version <= :ventura

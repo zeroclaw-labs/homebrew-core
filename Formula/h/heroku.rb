@@ -1,17 +1,17 @@
 class Heroku < Formula
   desc "CLI for Heroku"
   homepage "https://www.npmjs.com/package/heroku/"
-  url "https://registry.npmjs.org/heroku/-/heroku-10.17.0.tgz"
-  sha256 "a443d816a7d52aa58751c7a1a95406a83a58d88860e554b2b3d796e08e5a4ccf"
+  url "https://registry.npmjs.org/heroku/-/heroku-11.0.2.tgz"
+  sha256 "d3d950dc4bed0f9bc4e9874553d9990e32da0855d92d9afb8690a5ca59fc514f"
   license "ISC"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "cece3dc3c9e75ee4a711840477ba3afcafb6cf544f39c9154135adba21aa9e94"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "e17a624159786289b4b70ff5e8a2652d1aacc4b6181dd3488fba38f72f5263fc"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "e17a624159786289b4b70ff5e8a2652d1aacc4b6181dd3488fba38f72f5263fc"
-    sha256 cellar: :any_skip_relocation, sonoma:        "2d6dcefab89d672b0f76cee52a80b06fd2051af44a974ba6c035acc72c64a162"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "27239143925a4bf8e29e2ce55489f1210118b374f3bd5879cce80c1a98c99ee5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "27239143925a4bf8e29e2ce55489f1210118b374f3bd5879cce80c1a98c99ee5"
+    sha256 cellar: :any,                 arm64_tahoe:   "c893f554da04211cce57815105fb49cfefa054ffdcf1c7b1b4fccbf8e474b55d"
+    sha256 cellar: :any,                 arm64_sequoia: "f6f6f7da2ad1d0cac8bda6b6d055983e5d34a9cfb6e65b5d1fb8cfba9e033165"
+    sha256 cellar: :any,                 arm64_sonoma:  "f6f6f7da2ad1d0cac8bda6b6d055983e5d34a9cfb6e65b5d1fb8cfba9e033165"
+    sha256 cellar: :any,                 sonoma:        "f39cc2642bddb0158d4bd89b5f9c8a77a85af68d53252f23ed7fcccc17e5d6cb"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "982293848c5b65ad354279148248ca8b78c45e1d93b36beaf3695bc8488394a1"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a4d9eb06e680c6bcf8f9c5c5ac1ab6580a319e7d3a4c0729f55e3f88c50e7492"
   end
 
   depends_on "node"
@@ -28,6 +28,11 @@ class Heroku < Formula
     # Remove vendored pre-built binary `terminal-notifier`
     node_notifier_vendor_dir = node_modules/"node-notifier/vendor"
     rm_r(node_notifier_vendor_dir) # remove vendored pre-built binaries
+
+    os = OS.kernel_name.downcase
+    arch = Hardware::CPU.intel? ? "x64" : Hardware::CPU.arch.to_s
+    node_modules.glob("{bare-fs,bare-os,bare-url}/prebuilds/*")
+                .each { |dir| rm_r(dir) if dir.basename.to_s != "#{os}-#{arch}" }
 
     if OS.mac?
       terminal_notifier_dir = node_notifier_vendor_dir/"mac.noindex"

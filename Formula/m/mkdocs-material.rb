@@ -3,17 +3,18 @@ class MkdocsMaterial < Formula
 
   desc "Material Design theme for MkDocs"
   homepage "https://squidfunk.github.io/mkdocs-material/"
-  url "https://files.pythonhosted.org/packages/34/57/5d3c8c9e2ff9d66dc8f63aa052eb0bac5041fecff7761d8689fe65c39c13/mkdocs_material-9.7.2.tar.gz"
-  sha256 "6776256552290b9b7a7aa002780e25b1e04bc9c3a8516b6b153e82e16b8384bd"
+  url "https://files.pythonhosted.org/packages/45/29/6d2bcf41ae40802c4beda2432396fff97b8456fb496371d1bc7aad6512ec/mkdocs_material-9.7.6.tar.gz"
+  sha256 "00bdde50574f776d328b1862fe65daeaf581ec309bd150f7bff345a098c64a69"
   license "MIT"
+  revision 1
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "a27f91e6bd29757b53083ae3c48131b0961f9f32b9d70731e235a9682884b288"
-    sha256 cellar: :any,                 arm64_sequoia: "68f450c42e0e43b476a22096ac16af52f2839ec6ab9363df61e2fdb7fe61bc03"
-    sha256 cellar: :any,                 arm64_sonoma:  "d27015e76f5ac0ba1640a88f420667dee1d0628e22fc8236fc6a2cf1cb6dcabe"
-    sha256 cellar: :any,                 sonoma:        "a60496eae1432727efeca413ca7b734dce2d603da58aa684e8c3f90ddfc381f6"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "7597366d92f96221dd29df3236d8c65fe4ddda3a07f7e2252d253c9d60d449d6"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "49d212671359ac8901965cd1cd693050db79a80a9fb5f1453d9964f1e7e84af3"
+    sha256 cellar: :any,                 arm64_tahoe:   "41f5bc8dc323fe643f42fd1d6f368c833114c8cd7fe2c78c3cf68909cdab6e88"
+    sha256 cellar: :any,                 arm64_sequoia: "3e8f3c1d48c5960042c45df6ef9ef9d38b21fcd1394aff4b7ebd1f3aa6fb9c93"
+    sha256 cellar: :any,                 arm64_sonoma:  "a00cb666793a8f488f473fddbd7f16b1146bb94be6a80cf2a2d425443c88697e"
+    sha256 cellar: :any,                 sonoma:        "b20ed8d00a37035ae2b2ed07718129806acd172d86a0e0478481ce0cdacd4b2f"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "d988965af28e41a135219fb1af5e98ea5d1f59f6839854f1c867b5b945d03f95"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5f5722d20f8b7ee96ca5e9d5c937fb1269272be777ba8f9a6a4dbcbf3cc2023f"
   end
 
   depends_on "certifi" => :no_linkage
@@ -35,8 +36,8 @@ class MkdocsMaterial < Formula
   end
 
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/13/69/33ddede1939fdd074bce5434295f38fae7136463422fe4fd3e0e89b98062/charset_normalizer-3.4.4.tar.gz"
-    sha256 "94537985111c35f28720e43603b8e7b43a6ecfb2ce1d3058bbe955b73404e21a"
+    url "https://files.pythonhosted.org/packages/7b/60/e3bec1881450851b087e301bedc3daa9377a4d45f1c26aa90b0b235e38aa/charset_normalizer-3.4.6.tar.gz"
+    sha256 "1ae6b62897110aa7c79ea2f5dd38d1abca6db663687c0b1ad9aed6f6bae3d9d6"
   end
 
   resource "click" do
@@ -85,8 +86,8 @@ class MkdocsMaterial < Formula
   end
 
   resource "mkdocs-get-deps" do
-    url "https://files.pythonhosted.org/packages/98/f5/ed29cd50067784976f25ed0ed6fcd3c2ce9eb90650aa3b2796ddf7b6870b/mkdocs_get_deps-0.2.0.tar.gz"
-    sha256 "162b3d129c7fad9b19abfdcb9c1458a651628e4b1dea628ac68790fb3061c60c"
+    url "https://files.pythonhosted.org/packages/ce/25/b3cccb187655b9393572bde9b09261d267c3bf2f2cdabe347673be5976a6/mkdocs_get_deps-0.2.2.tar.gz"
+    sha256 "8ee8d5f316cdbbb2834bc1df6e69c08fe769a83e040060de26d3c19fad3599a1"
   end
 
   resource "mkdocs-material-extensions" do
@@ -110,8 +111,8 @@ class MkdocsMaterial < Formula
   end
 
   resource "platformdirs" do
-    url "https://files.pythonhosted.org/packages/1b/04/fea538adf7dbbd6d186f551d595961e564a3b6715bdf276b477460858672/platformdirs-4.9.2.tar.gz"
-    sha256 "9a33809944b9db043ad67ca0db94b14bf452cc6aeaac46a88ea55b26e2e9d291"
+    url "https://files.pythonhosted.org/packages/19/56/8d4c30c8a1d07013911a8fdbd8f89440ef9f08d07a1b50ab8ca8be5a20f9/platformdirs-4.9.4.tar.gz"
+    sha256 "1ec356301b7dc906d83f371c8f487070e99d3ccf9e501686456394622a01a934"
   end
 
   resource "pygments" do
@@ -140,8 +141,8 @@ class MkdocsMaterial < Formula
   end
 
   resource "requests" do
-    url "https://files.pythonhosted.org/packages/c9/74/b3ff8e6c8446842c3f5c837e9c3dfcfe2018ea6ecef224c710c85ef728f4/requests-2.32.5.tar.gz"
-    sha256 "dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf"
+    url "https://files.pythonhosted.org/packages/34/64/8860370b167a9721e8956ae116825caff829224fbca0ca6e7bf8ddef8430/requests-2.33.0.tar.gz"
+    sha256 "c7ebc5e8b0f21837386ad0e1c8fe8b829fa5f544d8df3b2253bff14ef29d7652"
   end
 
   resource "six" do

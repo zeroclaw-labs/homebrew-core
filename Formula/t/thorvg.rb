@@ -1,8 +1,8 @@
 class Thorvg < Formula
   desc "Lightweight portable library used for drawing vector-based scenes and animations"
   homepage "https://www.thorvg.org"
-  url "https://github.com/thorvg/thorvg/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "061343ed560f08ef2f7b48a7f6b684ae6bfd50b7904599d8581e466b2531844f"
+  url "https://github.com/thorvg/thorvg/archive/refs/tags/v1.0.3.tar.gz"
+  sha256 "96bd73c9b3f063251404609757301197d63b6a75e22c1527889dcaab3d5827a0"
   license "MIT"
   head "https://github.com/thorvg/thorvg.git", branch: "main"
 
@@ -12,12 +12,12 @@ class Thorvg < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "e2d6bbaef2d44857ee10e04b8cdef4181378f16495bf934431017fe33616caf7"
-    sha256 cellar: :any,                 arm64_sequoia: "bf507d64b82cce95df0890fd89fe8e9c8ef60317cb5c0ea73f9e2c7e85abf4a0"
-    sha256 cellar: :any,                 arm64_sonoma:  "29a288e9a939e872d978d5c794097ef1035be761b5360e56805c0b7c27f54030"
-    sha256 cellar: :any,                 sonoma:        "f3120164f30377e309a1649e623091393eddea76a05f8078b13f44280ff63a14"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "e7da32b612dba76ae26837527dc1ef78552a61b713a4e8314970ca62d34b5a4c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "9034ea438c681c3317640249c36bb9bb37e8cf7841f337771f638550fa32baa4"
+    sha256 cellar: :any,                 arm64_tahoe:   "583bb154cb978b9edd2613e87f64f58ea4973b6e0f0d45cc4f1646b01284f116"
+    sha256 cellar: :any,                 arm64_sequoia: "72f961c070fc684a9fa5976546a9ae1b7ef841b8b2f1834514672204710f1228"
+    sha256 cellar: :any,                 arm64_sonoma:  "8f2c259325553de0ffd82322a7058fbd6481dc0fcf9de4b63ceceea7d60a2d11"
+    sha256 cellar: :any,                 sonoma:        "5cf3161e437f92d33f25f85985ca1507d2ce6b75fdaf25bb18199403f1f9b0a3"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "23ac4c4a42374bd90f47138bc6f23bf479205a8c5696c331f54fc9e65808c06c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d843c600d7c3a4fd2db35cc50e85ec4f3caa0779485d15ab3270421f4fbfa332"
   end
 
   depends_on "meson" => :build

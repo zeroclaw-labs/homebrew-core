@@ -1,25 +1,34 @@
 class Fbthrift < Formula
   desc "Facebook's branch of Apache Thrift, including a new C++ server"
   homepage "https://github.com/facebook/fbthrift"
-  url "https://github.com/facebook/fbthrift/archive/refs/tags/v2026.01.12.00.tar.gz"
-  sha256 "6601fd362b96160ac9c37c3184153f605e4b09fbc54f3d474cf5cc926a3d62de"
   license "Apache-2.0"
-  revision 1
+  compatibility_version 1
   head "https://github.com/facebook/fbthrift.git", branch: "main"
 
+  stable do
+    url "https://github.com/facebook/fbthrift/archive/refs/tags/v2026.03.16.00.tar.gz"
+    sha256 "b79411e8e8c86ec98577e68b79e0889d53bda0d1ef45ffd7f839a776e87784f3"
+
+    # Backport fix for shared libraries
+    patch do
+      url "https://github.com/facebook/fbthrift/commit/ea92c7a50d7058475559790717fceef975325a4c.patch?full_index=1"
+      sha256 "7b48afa014ab190296847386901705bcda066ea4ff8b6eca16366d7cb8bb6c98"
+    end
+  end
+
   bottle do
-    rebuild 1
-    sha256 cellar: :any,                 arm64_tahoe:   "f136b31674b82b47aff7794c165390da31d9ca42c54b3d4298c459ded8bdb028"
-    sha256 cellar: :any,                 arm64_sequoia: "e6714731357eecc01079dc715a6443b2aad8be219506d42bdb5587cc6c0f65fc"
-    sha256 cellar: :any,                 arm64_sonoma:  "b67e3f1bcf63e2d691a34028e4cce8a014a5c3517788d59fa223d1d13de267cc"
-    sha256 cellar: :any,                 sonoma:        "07d365f2daf208bb44e41ae03b69204d820684e0fe18f129696e5c75c815c760"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "34804d936b450fc20820db783992c8b188a9e0dbaec05b46e2e021766c069caa"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6b455f3610ea9d15687037e6e6cae87a7fdfafad586891205b331143075a44a1"
+    sha256 cellar: :any,                 arm64_tahoe:   "da098e7856a91706e9054a2ea60fc0b9cc7eebf28f5db72c7cc8775372a8aada"
+    sha256 cellar: :any,                 arm64_sequoia: "beaf8b33d4a1cea830c40584f7f5ee2f7fa4a7bbf9dab8cda399231c0b3c67c1"
+    sha256 cellar: :any,                 arm64_sonoma:  "dd2d4a11083bf92c73ab698e1fa4d456ae935803e5456794be31f2a79c4174a6"
+    sha256 cellar: :any,                 sonoma:        "e0f6f493e185175b49be075a5ade32e45a245e8117c516ab2c0e39cce98946c3"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "021dfd1ca8324f19207d32ad7bd17e3ecfa0e80d8cd7157f1c13662287264336"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8e696a29e69245b68298ad71d17c43a7a7be876f6930cdc40ccc0f0da6f06472"
   end
 
   depends_on "bison" => :build # Needs Bison 3.1+
   depends_on "cmake" => [:build, :test]
   depends_on "mvfst" => [:build, :test]
+  depends_on "zstd" => :build
   depends_on "double-conversion"
   depends_on "fizz"
   depends_on "fmt"
@@ -29,7 +38,6 @@ class Fbthrift < Formula
   depends_on "openssl@3"
   depends_on "wangle"
   depends_on "xxhash"
-  depends_on "zstd"
 
   uses_from_macos "flex" => :build
   uses_from_macos "python" => :build
@@ -97,7 +105,7 @@ class Fbthrift < Formula
     # Test CMake package to make sure required dependencies without linkage are kept,
     # Link to `FBThrift::transport` as it uses path to `zstd` shared library
     (testpath/"CMakeLists.txt").write <<~CMAKE
-      cmake_minimum_required(VERSION 3.5)
+      cmake_minimum_required(VERSION 4.0)
       project(test LANGUAGES CXX)
 
       list(APPEND CMAKE_MODULE_PATH "#{Formula["fizz"].opt_libexec}/cmake")

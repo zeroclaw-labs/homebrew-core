@@ -2,9 +2,10 @@ class Vim < Formula
   desc "Vi 'workalike' with many additional features"
   homepage "https://www.vim.org/"
   # vim should only be updated every 50 releases on multiples of 50
-  url "https://github.com/vim/vim/archive/refs/tags/v9.2.0000.tar.gz"
-  sha256 "875875fb5988af3db0726bef9b048a559a9563aa0ecca8240e82057e8e5941c3"
+  url "https://github.com/vim/vim/archive/refs/tags/v9.2.0250.tar.gz"
+  sha256 "ae90ce8a5d95e5e5147d1dedafd74bfb141024b5e5c61640102f2328814d6f17"
   license "Vim"
+  compatibility_version 1
   head "https://github.com/vim/vim.git", branch: "master"
 
   # The Vim repository contains thousands of tags and the `Git` strategy isn't
@@ -25,17 +26,17 @@ class Vim < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "ae51c262531f2b7c496aeabe858ca4983795ba3ca028291fef5018e787be8de6"
-    sha256 arm64_sequoia: "77a2c04cbe59e3181fefddf89bbb8c1fa50ff4839588fb74bd7e5f7b0206007d"
-    sha256 arm64_sonoma:  "8475f07148d36582e975931e2a4d2871a40b0a781c4f46f5124fc34206ebaaa1"
-    sha256 sonoma:        "570ec540bcbd5edde7cf0a414d8927ee33d2eafa879c7be3fc16f17ae4df8666"
-    sha256 arm64_linux:   "2c2da6501e25a28bc24fec974e9575b2c98c0f7d751b55cf459a9706e341c7f8"
-    sha256 x86_64_linux:  "d50988d842fab7bd1d013d9bf0b59ec25767e9448e155bcc18f5b3313fe1ecdd"
+    sha256 arm64_tahoe:   "32d17a173391a5555bf0dc85d30ff1318cf3908a0b2aae3cf2b4eb9326364102"
+    sha256 arm64_sequoia: "4c4e9c56587c499ddd0f73efda30315adf770685db3642c3a984f0132ab98565"
+    sha256 arm64_sonoma:  "d3b297939cc2078b9db6f58d9ffe776b66e3fe9262c1c7a3c04f75d503c892bf"
+    sha256 sonoma:        "0a6cbe49e736cddd5fb8eded70c71cb10492bffe10216f56440bfefdaee3cc82"
+    sha256 arm64_linux:   "465846dd70e57cc290adde74d74cdbc28b4a706826b40eceeff79f1715c2cfef"
+    sha256 x86_64_linux:  "caf37977437f525f46dca0fcba09296152b858880ef8e3061c38d6cde27ca791"
   end
 
   depends_on "gettext" => :build
   depends_on "libsodium"
-  depends_on "lua"
+  depends_on "lua@5.4" # Lua 5.5 doesn't work for now, see https://github.com/vim/vim/issues/19639
   depends_on "ncurses"
   depends_on "python@3.14"
   depends_on "ruby"
@@ -83,7 +84,7 @@ class Vim < Formula
                           "--disable-gui",
                           "--without-x",
                           "--enable-luainterp",
-                          "--with-lua-prefix=#{Formula["lua"].opt_prefix}"
+                          "--with-lua-prefix=#{Formula["lua@5.4"].opt_prefix}"
     system "make"
     # Parallel install could miss some symlinks
     # https://github.com/vim/vim/issues/1031

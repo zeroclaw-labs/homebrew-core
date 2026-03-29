@@ -2,7 +2,8 @@ class Opencv < Formula
   desc "Open source computer vision library"
   homepage "https://opencv.org/"
   license "Apache-2.0"
-  revision 3
+  revision 7
+  compatibility_version 1
 
   stable do
     url "https://github.com/opencv/opencv/archive/refs/tags/4.13.0.tar.gz"
@@ -24,13 +25,12 @@ class Opencv < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 arm64_tahoe:   "b389b86870c2e9732ddb357493035589945666e4065546bc3e610273bf88f008"
-    sha256 arm64_sequoia: "252a384d566f3781df2e3517eabe91a03f2cf372d5ade117ee43757f849990dd"
-    sha256 arm64_sonoma:  "a223315ca70b678fba04eeb40487480e82610d5503fb2ccb6830c05e11c77b96"
-    sha256 sonoma:        "e70f475c1d60ef8b3b68d832128bf48b2b540f604d9aa8ab0f86a7cfa002eac1"
-    sha256 arm64_linux:   "3cd0c38ad37d46e57172514e6d8e51d70e2dde4b613b5111fb1e366b8d87b86f"
-    sha256 x86_64_linux:  "12a205362ee78560b219409443be72c83d9e2d3e0379c40455aa1451f2de3a23"
+    sha256 arm64_tahoe:   "6da47b1eace0e3a0ab815a21d582cc3e4dadde2db9618407c514bc02365971ea"
+    sha256 arm64_sequoia: "8805c2677f819a3305dc3ac529a20c4de09d9c5c14ec64cde51ddde94b88274d"
+    sha256 arm64_sonoma:  "51675bfb8aeb55fe1caab6876ee2f5ae1c7ef9621be0af88e72c6cb6d2e8c09d"
+    sha256 sonoma:        "cb0d11e34c7cb0c908fe3fb97bf4426f983122fff2637f4c65f86b54629ac6c3"
+    sha256 arm64_linux:   "1314d585a6b435c53d9d1aa42c85841be78cc00059b836bbfa9eb2e40a4bf6bf"
+    sha256 x86_64_linux:  "2fe148225dc42a0512c7f451357adc906e04d7661d3504404c222ea2395a583f"
   end
 
   head do
@@ -95,6 +95,11 @@ class Opencv < Formula
     # Remove bundled libraries to make sure formula dependencies are used
     libdirs = %w[ffmpeg libjasper libjpeg libjpeg-turbo libpng libtiff libwebp openexr openjpeg protobuf tbb zlib]
     libdirs.each { |l| rm_r(buildpath/"3rdparty"/l) }
+
+    # Fix OpenVINO 2026 Tensor::data() constness mismatch, upstream bug report, https://github.com/opencv/opencv/issues/28586
+    inreplace "modules/dnn/src/op_inf_engine.cpp",
+              "return Mat(size, type, blob.data());",
+              "return Mat(size, type, const_cast<void*>(blob.data()));"
 
     args = %W[
       -DCMAKE_CXX_STANDARD=17

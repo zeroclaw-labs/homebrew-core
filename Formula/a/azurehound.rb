@@ -1,8 +1,8 @@
 class Azurehound < Formula
   desc "Azure Data Exporter for BloodHound"
   homepage "https://github.com/SpecterOps/AzureHound"
-  url "https://github.com/SpecterOps/AzureHound/archive/refs/tags/v2.9.2.tar.gz"
-  sha256 "42eed0da4ace2755fb79555700d44056e9ad939a422c4029608c58dd1df94780"
+  url "https://github.com/SpecterOps/AzureHound/archive/refs/tags/v2.11.0.tar.gz"
+  sha256 "9c66851f4842229fbd4c92e021c3f2929889bc0e2484ef1ea5bf96a553933d86"
   license "GPL-3.0-or-later"
   head "https://github.com/SpecterOps/AzureHound.git", branch: "main"
 
@@ -12,12 +12,12 @@ class Azurehound < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "b62133827725fdee3a7af9d27a2f30d4e630a0f95efe86cf7583990201bb56f9"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "b62133827725fdee3a7af9d27a2f30d4e630a0f95efe86cf7583990201bb56f9"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "b62133827725fdee3a7af9d27a2f30d4e630a0f95efe86cf7583990201bb56f9"
-    sha256 cellar: :any_skip_relocation, sonoma:        "5f1fa2d056d22dd16770be0b31a1850b107d5312a31141515e1530107016bdac"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "2b2f2f9931d7e2afb78f536c085b4fb1858b9a1c63d6f4dfbdf6013928aa6421"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "df5ef2d2c2df8df3cda130e237fe2a7967888c74277d2a537c5475c7037ce86a"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "d8a92572f5f98ea7b505e7b58ad60c5053349b1cbf07ae50b67422f3fb103047"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "d8a92572f5f98ea7b505e7b58ad60c5053349b1cbf07ae50b67422f3fb103047"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "d8a92572f5f98ea7b505e7b58ad60c5053349b1cbf07ae50b67422f3fb103047"
+    sha256 cellar: :any_skip_relocation, sonoma:        "7fc47ff9f28ad8d24fed868642d2c2d88875b379ba145ee79621632111c0adbf"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "252836f41e842afefc581f452e935b21732a100a941a4751265aeac275c3072b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "dddf3d1282aea78572d168a80b0dbf8d47705670944bc35746aa9302c58c2db6"
   end
 
   depends_on "go" => :build

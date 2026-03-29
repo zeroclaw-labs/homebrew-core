@@ -1,8 +1,8 @@
 class ShairportSync < Formula
   desc "AirTunes emulator that adds multi-room capability"
   homepage "https://github.com/mikebrady/shairport-sync"
-  url "https://github.com/mikebrady/shairport-sync/archive/refs/tags/5.0.tar.gz"
-  sha256 "ace8e2c771f9c30e55f1a5e8b2b180b09fe29133e6ed1738032a6a7c3f74b22d"
+  url "https://github.com/mikebrady/shairport-sync/archive/refs/tags/5.0.2.tar.gz"
+  sha256 "1fe2394d2ded30017ca1038a46d4261b4983d94d98b8dadc7bca64431b27bd08"
   license "MIT"
   head "https://github.com/mikebrady/shairport-sync.git", branch: "master"
 
@@ -12,12 +12,12 @@ class ShairportSync < Formula
   end
 
   bottle do
-    sha256 arm64_tahoe:   "20fbec8aa6e6d5b713a377c3609de2ed0860d30a0a126598b6be3696463c1e49"
-    sha256 arm64_sequoia: "6e40bc310297cef3e8fcab70f6bde1f6d9dbd1da7f346ca459fb5fc98ad459dc"
-    sha256 arm64_sonoma:  "c6d800e9669423a2d9d63cca45466e12121bb4d70c6b874a9d1a2da94086f045"
-    sha256 sonoma:        "7a4c5469ec054322ab683f563173ee14afc9d53908c1be5becda721db8038229"
-    sha256 arm64_linux:   "9c85eef3917aa731f4db35e6e43e681efec6908820d571199c38c010e1200b21"
-    sha256 x86_64_linux:  "d11973583dc6929bd4b28a3f2619b7ffdb207210036c757070ed67b8b6315854"
+    sha256 arm64_tahoe:   "100c7c7245317c1bd2001b86fd14f55d67cbe39005fc0a085e235a5746f17a73"
+    sha256 arm64_sequoia: "6e5a3b57c7a640cb4cdccd345e78babe2a072ecd984b509fee9e6907b528e086"
+    sha256 arm64_sonoma:  "7cb0284ee2fcb64966525c6ac9ec73bf266d149fdf165908c42854746e4eaf17"
+    sha256 sonoma:        "7f5ae7695e28e83617327577a64ee4bbd281175525b6dc3a88be7123e5ce78a7"
+    sha256 arm64_linux:   "7b785dc908b01f750c209371c0aa154473f701802778533da2cad3c4dd601fd6"
+    sha256 x86_64_linux:  "eb7e702e7dcce7411e448f6b9336aceb71f49fd5e7895d50cac12df03e774dfc"
   end
 
   depends_on "autoconf" => :build
@@ -30,12 +30,6 @@ class ShairportSync < Formula
   depends_on "openssl@3"
   depends_on "popt"
   depends_on "pulseaudio"
-
-  # patch to fix version string from 5.0rc0 to 5.0, upstream pr ref, https://github.com/mikebrady/shairport-sync/pull/2144
-  patch do
-    url "https://github.com/mikebrady/shairport-sync/commit/6c71105e98af30a9b157a1534d0bed82f4e49de6.patch?full_index=1"
-    sha256 "67edc2bcb8b37a1fffacf7499d42c8abfe44a7af0312f7407f056b677d7681db"
-  end
 
   def install
     system "autoreconf", "--force", "--install", "--verbose"

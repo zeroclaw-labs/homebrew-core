@@ -5,13 +5,12 @@ class Mplayer < Formula
   sha256 "650cd55bb3cb44c9b39ce36dac488428559799c5f18d16d98edb2b7256cbbf85"
   license all_of: ["GPL-2.0-only", "GPL-2.0-or-later"]
   revision 2
+  compatibility_version 1
 
   livecheck do
     url "https://mplayerhq.hu/MPlayer/releases/"
     regex(/href=.*?MPlayer[._-]v?(\d+(?:\.\d+)+)\.t/i)
   end
-
-  no_autobump! because: :requires_manual_review
 
   bottle do
     rebuild 1

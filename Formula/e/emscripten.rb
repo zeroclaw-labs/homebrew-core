@@ -1,8 +1,8 @@
 class Emscripten < Formula
   desc "LLVM bytecode to JavaScript compiler"
   homepage "https://emscripten.org/"
-  url "https://github.com/emscripten-core/emscripten/archive/refs/tags/5.0.1.tar.gz"
-  sha256 "4612f72f59b383d270ea17cc4b4e5b3837b83e42362733a127cc149298cbd77e"
+  url "https://github.com/emscripten-core/emscripten/archive/refs/tags/5.0.4.tar.gz"
+  sha256 "f64e51e00f18c69a8409796c5656476e309541143487d6afa1f82e857119c743"
   license all_of: [
     "Apache-2.0", # binaryen
     "Apache-2.0" => { with: "LLVM-exception" }, # llvm
@@ -16,20 +16,18 @@ class Emscripten < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "c2d3d9f5eac1a759945f82d0cb39be1a9be4813f91773e8d9e063b2bfb3b9a6e"
-    sha256 cellar: :any,                 arm64_sequoia: "715b391ca4e127d36c9938d12ea4ec3d70e5eaef8b7a3ea9b72e7e401e313798"
-    sha256 cellar: :any,                 arm64_sonoma:  "93e845e91e8708df6bfec80794b2e56fabf487efff95f9d9054b6afc176f0023"
-    sha256 cellar: :any,                 sonoma:        "fda7cb1b7d23bec0e1bc8d5f550b33ea7677f6dc1fea8b227a045c9a831dadc1"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "8c9f2d84952987064c5c2f4a50b85621e9f44e89868727fff2230ec0824a804c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "39566e807bedf2c60c91f2543f02a54ef299aa111f647e1fd4682a1bacbd3070"
+    sha256 cellar: :any,                 arm64_tahoe:   "27eb7f760841087e30c6d57c3de11a2c5911cc2c8bee4233666b6d9e3aa1feb2"
+    sha256 cellar: :any,                 arm64_sequoia: "73a062c4331d2db4de6ccbb7b8342d8397f6f6b12725df342366cb370f423685"
+    sha256 cellar: :any,                 arm64_sonoma:  "65c44d37399059514aaf51bcf3551bdb3191bbce01e95f8d58d9c5c87f7a5d69"
+    sha256 cellar: :any,                 sonoma:        "512286423068785a127ebeb1494a7ec44ba46fa5d103e4bfd0558dbd86d9ec0a"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "80779a498c0e53c8c94004f64e458745eaaf752db1bf67c7e7cbc887afb0dae0"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "40b0e14068b106b19c94904465f80dea94b3abe1c129efb2ff5e5f492e8d8fa1"
   end
 
   depends_on "cmake" => :build
   depends_on "node"
   depends_on "python@3.14"
   depends_on "yuicompressor"
-
-  uses_from_macos "llvm" => :build
 
   # OpenJDK is needed as a dependency on Linux and ARM64 for google-closure-compiler,
   # an emscripten dependency, because the native GraalVM image will not work.
@@ -40,18 +38,8 @@ class Emscripten < Formula
   end
 
   on_linux do
-    depends_on "lld" => :build
     depends_on "openjdk"
     depends_on "zlib-ng-compat"
-  end
-
-  # We use LLVM to work around an error while building bundled `google-benchmark` with GCC
-  fails_with :gcc do
-    cause <<~EOS
-      .../third-party/benchmark/src/thread_manager.h:50:31: error: expected ‘)’ before ‘(’ token
-         50 |   GUARDED_BY(GetBenchmarkMutex()) Result results;
-            |                               ^
-    EOS
   end
 
   # Use emscripten's recommended binaryen revision to avoid build failures.
@@ -62,9 +50,9 @@ class Emscripten < Formula
   # https://chromium.googlesource.com/emscripten-releases/+/<commit>/DEPS
   # Then use the listed binaryen_revision for the revision below.
   resource "binaryen" do
-    url "https://github.com/WebAssembly/binaryen/archive/18ba06162272bc8bbf1fc29b5cb0832dd54becac.tar.gz"
-    version "18ba06162272bc8bbf1fc29b5cb0832dd54becac"
-    sha256 "0bdb42545fde5ea45b239103d8343bce15170fa1f93b3aa498a3034184f79c07"
+    url "https://github.com/WebAssembly/binaryen/archive/711607322070293259aa768b3a25f70db47e5daa.tar.gz"
+    version "711607322070293259aa768b3a25f70db47e5daa"
+    sha256 "238bbdb10d7dafd0fce02a9513668161f9268672e593ebf93aac7813251c3c9b"
 
     livecheck do
       url "https://raw.githubusercontent.com/emscripten-core/emsdk/refs/tags/#{LATEST_VERSION}/emscripten-releases-tags.json"
@@ -88,9 +76,9 @@ class Emscripten < Formula
   # See binaryen resource above for instructions on how to update this.
   # Then use the listed llvm_project_revision for the tarball below.
   resource "llvm" do
-    url "https://github.com/llvm/llvm-project/archive/b447f5d9763010f8c6806c578533291aef2bd484.tar.gz"
-    version "b447f5d9763010f8c6806c578533291aef2bd484"
-    sha256 "6d871689958255fce2ebee99e5055f5167c9451a6bc32332b1a2409fdf138842"
+    url "https://github.com/llvm/llvm-project/archive/dcaab6dd99a33edbf98ad1ade0ea0d196b797910.tar.gz"
+    version "dcaab6dd99a33edbf98ad1ade0ea0d196b797910"
+    sha256 "a08cbf32959179f74584c4b95386f3c142bca3c57fdfa3ec6251e92cbf2ba86a"
 
     livecheck do
       url "https://raw.githubusercontent.com/emscripten-core/emsdk/refs/tags/#{LATEST_VERSION}/emscripten-releases-tags.json"
@@ -140,9 +128,6 @@ class Emscripten < Formula
         WebAssembly
       ]
 
-      # Apple's libstdc++ is too old to build LLVM
-      ENV.libcxx if ENV.compiler == :clang
-
       # See upstream configuration in `src/build.py` at
       # https://chromium.googlesource.com/emscripten-releases/
       args = %W[
@@ -163,6 +148,7 @@ class Emscripten < Formula
         -DLLVM_INSTALL_UTILS=OFF
         -DLLVM_ENABLE_ZSTD=OFF
         -DLLVM_ENABLE_Z3_SOLVER=OFF
+        -DLLVM_INCLUDE_BENCHMARKS=OFF
       ]
       args << "-DLLVM_ENABLE_LIBEDIT=OFF" if OS.linux?
 

@@ -3,17 +3,17 @@ class Specify < Formula
 
   desc "Toolkit to help you get started with Spec-Driven Development"
   homepage "https://github.com/github/spec-kit"
-  url "https://github.com/github/spec-kit/archive/refs/tags/v0.1.5.tar.gz"
-  sha256 "1eac4c4a9b168a576a6feac7e9376da74c1ea7c7e46b755211d6b7f71e9c1d55"
+  url "https://github.com/github/spec-kit/archive/refs/tags/v0.4.3.tar.gz"
+  sha256 "32c7bc0fcae97de71124af650c45f78144f7f391d050270defeec1d12b1efebd"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "d0d4797c2ccc9ab12280774d4fbbd3c1c7c834f53b0b1eb2155ac68e4f47d965"
-    sha256 cellar: :any,                 arm64_sequoia: "bda7f9f7c1c43c94824d0ac38abb658a4df05a46487e49a7ff7429521c181dd6"
-    sha256 cellar: :any,                 arm64_sonoma:  "2348f6df369031584d6bb60b496274307ba875010a407d9b80fd8bf2e10a31ce"
-    sha256 cellar: :any,                 sonoma:        "97b1454b973c906dd74d8628093694006789e76fa02c3f07e9ee724cbfdf776d"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "78fef2d09777cc7ab35044bdb768f8f586705f4d16cfde9d5c689ee5641ea941"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6d9f19a4f23d35bbb6e4288c3e7eb06679aabbb6c9cf680747d5044014b6ea1a"
+    sha256 cellar: :any,                 arm64_tahoe:   "84b64be9b1599aa08ff40a09bb4ee81bd9662c5340aba2495dcbf2dabd9cd47a"
+    sha256 cellar: :any,                 arm64_sequoia: "092be9ecd4f8c25634fb8c20872287a060338e2f963759f105c29991874ca1fa"
+    sha256 cellar: :any,                 arm64_sonoma:  "9a4e030d3c6f78e216a7f0ec6647244cb9b534257e2075da9ad90bbd54fa3533"
+    sha256 cellar: :any,                 sonoma:        "31f4c69d4da4efa812b5b5a06962014ae8b5e042822b3c38c2db56d2c58a3c71"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "2fc121bd1c3af338adf1d78bd99dbfc26e0e4aec34f79755706f11839aeb81d6"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "64d63315f873fbb16503d2acbb71824f07a3c58914e722ba00b7580c0f149c0b"
   end
 
   depends_on "certifi" => :no_linkage
@@ -57,6 +57,11 @@ class Specify < Formula
     sha256 "795dafcc9c04ed0c1fb032c2aa73654d8e8c5023a7df64a53f39190ada629902"
   end
 
+  resource "json5" do
+    url "https://files.pythonhosted.org/packages/77/e8/a3f261a66e4663f22700bc8a17c08cb83e91fbf086726e7a228398968981/json5-0.13.0.tar.gz"
+    sha256 "b1edf8d487721c0bf64d83c28e91280781f6e21f4a797d3261c7c828d4c165bf"
+  end
+
   resource "markdown-it-py" do
     url "https://files.pythonhosted.org/packages/5b/f5/4ec618ed16cc4f8fb3b701563655a69816155e79e24a17b651541804721d/markdown_it_py-4.0.0.tar.gz"
     sha256 "cb0a2b4aa34f932c007117b194e945bd74e0ec24133ceb5bac59009cda1cb9f3"
@@ -72,9 +77,14 @@ class Specify < Formula
     sha256 "00243ae351a257117b6a241061796684b084ed1c516a08c48a3f7e147a9d80b4"
   end
 
+  resource "pathspec" do
+    url "https://files.pythonhosted.org/packages/fa/36/e27608899f9b8d4dff0617b2d9ab17ca5608956ca44461ac14ac48b44015/pathspec-1.0.4.tar.gz"
+    sha256 "0210e2ae8a21a9137c0d470578cb0e595af87edaa6ebf12ff176f14a02e0e645"
+  end
+
   resource "platformdirs" do
-    url "https://files.pythonhosted.org/packages/1b/04/fea538adf7dbbd6d186f551d595961e564a3b6715bdf276b477460858672/platformdirs-4.9.2.tar.gz"
-    sha256 "9a33809944b9db043ad67ca0db94b14bf452cc6aeaac46a88ea55b26e2e9d291"
+    url "https://files.pythonhosted.org/packages/19/56/8d4c30c8a1d07013911a8fdbd8f89440ef9f08d07a1b50ab8ca8be5a20f9/platformdirs-4.9.4.tar.gz"
+    sha256 "1ec356301b7dc906d83f371c8f487070e99d3ccf9e501686456394622a01a934"
   end
 
   resource "pygments" do
@@ -119,8 +129,8 @@ class Specify < Formula
   end
 
   resource "typer" do
-    url "https://files.pythonhosted.org/packages/5a/b6/3e681d3b6bb22647509bdbfdd18055d5adc0dce5c5585359fa46ff805fdc/typer-0.24.0.tar.gz"
-    sha256 "f9373dc4eff901350694f519f783c29b6d7a110fc0dcc11b1d7e353b85ca6504"
+    url "https://files.pythonhosted.org/packages/f5/24/cb09efec5cc954f7f9b930bf8279447d24618bb6758d4f6adf2574c41780/typer-0.24.1.tar.gz"
+    sha256 "e39b4732d65fbdcde189ae76cf7cd48aeae72919dea1fdfc16593be016256b45"
   end
 
   def install

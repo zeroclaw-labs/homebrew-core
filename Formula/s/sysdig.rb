@@ -8,7 +8,7 @@ class Sysdig < Formula
     { any_of: ["GPL-2.0-only", "MIT"] },                  # `falcosecurity-libs`, driver/
     { "GPL-2.0-only" => { with: "Linux-syscall-note" } }, # `falcosecurity-libs`, userspace/libscap/compat/
   ]
-  revision 1
+  revision 3
   head "https://github.com/draios/sysdig.git", branch: "dev"
 
   livecheck do
@@ -17,13 +17,12 @@ class Sysdig < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256                               arm64_tahoe:   "55890f899728967586c8a3a486f87fa2805a684b6cbf4f3ae69ddea62b348c60"
-    sha256                               arm64_sequoia: "c5ab3d2ea30dcc47d3372083e11f84d240d7a6255c114bc224cbe730f2b0fd30"
-    sha256                               arm64_sonoma:  "6e7ec5c225ffaf96a9bd6b35b73edde26681cfcffd0de060ddcc5a93ba174e96"
-    sha256                               sonoma:        "ff1e925489e9228538f00457f8b378d8d41495f7d05cbf47dfe75f50a74c8046"
-    sha256                               arm64_linux:   "17f38255802db21d7a788f6e77ebcffda53a4f0a5a1c8b5afe6193ac0769fd13"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b1ef41b6b7661e8a4f92644ed1f1e6891cec62e6967a5d88d21b1d3ec36c98f0"
+    sha256                               arm64_tahoe:   "0df639333fcb8267f4b3aabc636628b81a86b3f6a7cfd6a212dff1431c96c01e"
+    sha256                               arm64_sequoia: "f99c3a2bad7e30fd826eed8334fdd6dd99bc6dd2216484130d06478902554668"
+    sha256                               arm64_sonoma:  "64b07554879b8518142aa760be752743e0cf6281d923d34e58a27734db17aa7e"
+    sha256                               sonoma:        "c77d4eec59ed75ac419c498bcfa4073762ecafd94b05ea53bb281a59c94b3530"
+    sha256                               arm64_linux:   "c63e9595260f137127823df077646dd767eedea322d614545d04a0d69d0d15d8"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "40f2bbe5313b0d1729873662d54224cee2637437d0b12bb8db458b8f4ee33a21"
   end
 
   # FIXME: switch to brewed `falcosecurity-libs`

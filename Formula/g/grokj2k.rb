@@ -1,8 +1,8 @@
 class Grokj2k < Formula
   desc "JPEG 2000 Library"
   homepage "https://github.com/GrokImageCompression/grok"
-  url "https://github.com/GrokImageCompression/grok/releases/download/v20.0.5/source-full.tar.gz"
-  sha256 "7c34c4cd2b545d3bbd05b13c8e57db6a27dfd301613932f26aac3b4bd5397a8b"
+  url "https://github.com/GrokImageCompression/grok/releases/download/v20.2.4/source-full.tar.gz"
+  sha256 "fc3ee5c577bc738c2dc41045eb019aa76a396330c96d62edfb653e57809bd8f3"
   license "AGPL-3.0-or-later"
   head "https://github.com/GrokImageCompression/grok.git", branch: "master"
 
@@ -12,19 +12,19 @@ class Grokj2k < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any,                 arm64_tahoe:   "f3b758457d20893413e27e63a88f2ba85d53d54272279e05726d47e903efada6"
-    sha256 cellar: :any,                 arm64_sequoia: "867670c1f290033b3e2d08345d5c0ef25f8a5450331403331001fe939a1d43e6"
-    sha256 cellar: :any,                 arm64_sonoma:  "5f12676b6ced0986a56e5ace8b8e3eec174fcf2878f0c123b7d2500a45667add"
-    sha256 cellar: :any,                 sonoma:        "ec278adc4c3d7d39aecf470d56510ef442f7ff2b5920b7584ce374ff7b133b48"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "a7b29c0eb02a278f0521617aac47a2f02c6f62291e2febbf064f605f18760cfc"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d92e63e83ae6b91f7d7e6640a2e1abe6ee395b6bb245cb2460cab22289415d90"
+    sha256 cellar: :any,                 arm64_tahoe:   "e3e4cdab88c00b0ec55e9d8ad8ec6bff7e6c8a22053a2e48f26a1c69726b595f"
+    sha256 cellar: :any,                 arm64_sequoia: "2d30a765cd323e670af200385f47fb57f47f5a9e9c6d3ad31b3261984795355f"
+    sha256 cellar: :any,                 arm64_sonoma:  "c31457028bfc9ce575110892fef25af4094592f3756ea283c03b51773b8ab6e4"
+    sha256 cellar: :any,                 sonoma:        "3711d001dc39f850aaa699a74e54f0be641241bd16e4160c78d210de53e413b7"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "6dcdd4ca7f6bafa39b410ae55d3e90e8d338f9501935477b70ed7d02db2dd3f9"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "55ee1e7fa7749f9fb845114b6c19c9461df08049c03fd8e322df58b945d6f465"
   end
 
   depends_on "cmake" => :build
   depends_on "doxygen" => :build
   depends_on "pkgconf" => :build
   depends_on "exiftool"
+  depends_on "fmt"
   depends_on "jpeg-turbo"
   depends_on "libpng"
   depends_on "libtiff"
@@ -69,6 +69,7 @@ class Grokj2k < Formula
       -DGRK_BUILD_LIBPNG=OFF
       -DGRK_BUILD_LIBTIFF=OFF
       -DPERL_EXECUTABLE=#{perl}
+      -DSPDLOG_FMT_EXTERNAL=ON
     ]
 
     if OS.mac?

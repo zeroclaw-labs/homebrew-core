@@ -5,6 +5,7 @@ class Grpc < Formula
       tag:      "v1.78.1",
       revision: "5b6492ea90b2b867a6adad1b10a6edda28e860d1"
   license "Apache-2.0"
+  revision 3
   compatibility_version 1
   head "https://github.com/grpc/grpc.git", branch: "master"
 
@@ -20,12 +21,12 @@ class Grpc < Formula
   end
 
   bottle do
-    sha256 cellar: :any, arm64_tahoe:   "5def1df59ea6fecd20f3a4f1082d8ff3badafece0510ff498ee7fd3b5a0e1fc6"
-    sha256 cellar: :any, arm64_sequoia: "a56e4ec1760eb5dc2a715d246b3cad1b158c96d181b361252765293195cf279b"
-    sha256 cellar: :any, arm64_sonoma:  "538bdd2ee34e8ecd51ba2adec54351f2bca263dad81c744cc56489108a840811"
-    sha256 cellar: :any, sonoma:        "0f90b8cdd7d6a9b5e44a63d17c756765fd5c71ee45e1bf7579a3e7919e2b381b"
-    sha256               arm64_linux:   "240bf31b99c4f4f1121f43452ff5cbec6f68eb70954f868aa68e4b83aab1d50f"
-    sha256               x86_64_linux:  "0cdc078ea1a542d5675dfbe524643d9c1ed81d5a08f0545f69a1af07ae0c9de4"
+    sha256 cellar: :any, arm64_tahoe:   "571941b833eb2c5b12c09d86925b8c3b7b7d2a6928d9c6cf793d6864a488e9a5"
+    sha256 cellar: :any, arm64_sequoia: "4ad66b40270657c3fe016882300dfaeae668ad636521b4c53a66d41a8b022535"
+    sha256 cellar: :any, arm64_sonoma:  "4eb9e0820d895e4e2ced82eb5d93c92eb0c576607280ab53219471135e3523d9"
+    sha256 cellar: :any, sonoma:        "ea65b61ca7c36fbca750541a4f987b3a9cf4ed71a465f3b9e0f424288e87a944"
+    sha256               arm64_linux:   "1b37f25fa8979c0d93b03d397564d7df4b14876518e0e578752c54a434a3b942"
+    sha256               x86_64_linux:  "552d9d669bfc0d08a30d6d9c51cdebc8279d7744e3430e7dacf803856ed87798"
   end
 
   depends_on "cmake" => :build
@@ -49,13 +50,18 @@ class Grpc < Formula
     cause "Requires C++17 features not yet implemented"
   end
 
+  # Apply open PR to support building grpc_cli with Protobuf 34+
+  # PR ref: https://github.com/grpc/grpc/pull/41775
+  patch do
+    url "https://github.com/grpc/grpc/commit/168b069208538e58a72bf46a6410f9ac0d24019a.patch?full_index=1"
+    sha256 "406731204b925c3ba57c8dc84da573b2755c3365cd59c1f0a04c1791f7db6565"
+  end
+
   def install
     args = %W[
       -DCMAKE_CXX_STANDARD=17
-      -DCMAKE_CXX_STANDARD_REQUIRED=TRUE
       -DCMAKE_INSTALL_RPATH=#{rpath}
       -DBUILD_SHARED_LIBS=ON
-      -DgRPC_BUILD_TESTS=OFF
       -DgRPC_INSTALL=ON
       -DgRPC_ABSL_PROVIDER=package
       -DgRPC_CARES_PROVIDER=package
@@ -64,33 +70,38 @@ class Grpc < Formula
       -DgRPC_ZLIB_PROVIDER=package
       -DgRPC_RE2_PROVIDER=package
     ]
-    system "cmake", "-S", ".", "-B", "_build", *args, *std_cmake_args
+    system "cmake", "-S", ".", "-B", "_build", "-DgRPC_BUILD_TESTS=OFF", *args, *std_cmake_args
     system "cmake", "--build", "_build"
     system "cmake", "--install", "_build"
 
     # `grpc_cli` fails to build on Linux. In any case, it looks like it isn't meant to be installed.
     # TODO: consider dropping this on macOS too.
+    odie "Remove grpc_cli!" if build.stable? && version >= "1.80.0"
     return unless OS.mac?
 
     # The following are installed manually, so need to use CMAKE_*_LINKER_FLAGS
     # TODO: `grpc_cli` is a huge pain to install. Consider removing it.
     linker_flags = %W[-rpath #{rpath}]
-    args = %W[
+    grpc_cli_args = %W[
       -DCMAKE_EXE_LINKER_FLAGS=-Wl,#{linker_flags.join(",")}
       -DCMAKE_SHARED_LINKER_FLAGS=-Wl,#{linker_flags.join(",")}
-      -DBUILD_SHARED_LIBS=ON
       -DgRPC_BUILD_TESTS=ON
-      -DgRPC_ABSL_PROVIDER=package
-      -DgRPC_CARES_PROVIDER=package
-      -DgRPC_PROTOBUF_PROVIDER=package
-      -DgRPC_SSL_PROVIDER=package
-      -DgRPC_ZLIB_PROVIDER=package
-      -DgRPC_RE2_PROVIDER=package
     ]
-    system "cmake", "-S", ".", "-B", "_build-grpc_cli", *args, *std_cmake_args
+    system "cmake", "-S", ".", "-B", "_build-grpc_cli", *args, *grpc_cli_args, *std_cmake_args
     system "cmake", "--build", "_build-grpc_cli", "--target", "grpc_cli"
-    bin.install "_build-grpc_cli/grpc_cli"
     lib.install (buildpath/"_build-grpc_cli").glob(shared_library("libgrpc++_test_config", "*"))
+    libexec.install "_build-grpc_cli/grpc_cli"
+    (bin/"grpc_cli").write <<~SHELL
+      #!/bin/bash
+      echo "WARNING: grpc_cli will be removed from grpc formula in version 1.80.0" >&2
+      exec "#{libexec}/grpc_cli" "$@"
+    SHELL
+  end
+
+  def caveats
+    on_macos do
+      "grpc_cli will be removed from grpc formula in 1.80.0"
+    end
   end
 
   test do

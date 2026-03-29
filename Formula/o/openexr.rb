@@ -1,17 +1,18 @@
 class Openexr < Formula
   desc "High dynamic-range image file format"
   homepage "https://www.openexr.com/"
-  url "https://github.com/AcademySoftwareFoundation/openexr/archive/refs/tags/v3.4.5.tar.gz"
-  sha256 "b10f21d3f8ff3211eb1687a2e2bf7a79d361aec8dfaca1f9b79f3d70755b4f48"
+  url "https://github.com/AcademySoftwareFoundation/openexr/archive/refs/tags/v3.4.8.tar.gz"
+  sha256 "0dd8d50e7f04219f3f925702564e994f9acdc6133ba537ec75eb6208119bec33"
   license "BSD-3-Clause"
+  compatibility_version 1
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "e2c7a731a33246bc190e6cb065ad315cd6d8f14fdf92e5a6115b5247ddc1df8d"
-    sha256 cellar: :any,                 arm64_sequoia: "87fdf424951a35592f7b93f2b8d0b470270e23c356f11053591bda69e2791649"
-    sha256 cellar: :any,                 arm64_sonoma:  "e7007bd0c636b2cbb56692a4e4f2892dc6d604272d996ffd7ba7eadf6bf3bd19"
-    sha256 cellar: :any,                 sonoma:        "e075f6626b78592d5c8304eca600d7763b592ef06f0735bd334c6943d70c726b"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "29bf1829a95d305c46de3ee59b78c7ae1d3ac3f9edf60f58e5311c5d11f71acd"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "08d476a542722036076a61bfc7982a9ed9149d2e004b50d7130cf31552e03c9c"
+    sha256 cellar: :any,                 arm64_tahoe:   "cfbdb38f72815525272aea46da9426f3327ae150a6d0231f52e45a9e68a6c340"
+    sha256 cellar: :any,                 arm64_sequoia: "dc92aaa1ea00840f10eff2c13a94b14f24a528461cb211758cd344ec56ae6256"
+    sha256 cellar: :any,                 arm64_sonoma:  "91da5a80b368edc312dde7380fd06255f416155d4f66bd50dabd30d11d1e61c2"
+    sha256 cellar: :any,                 sonoma:        "675b934e36dc76392ad3c3921eb046e5e4acfc798e00c402cf9c5acc31c5a1cd"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "5eebb08283ef5071ba386b0e45926a6169e013333e20b9fd6841719e83aeac23"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "66308c444801a3d060c2511b7088678336cd58ac3bc6d7a2191137ae62e25584"
   end
 
   depends_on "cmake" => :build
