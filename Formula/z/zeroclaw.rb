@@ -1,8 +1,8 @@
 class Zeroclaw < Formula
   desc "Rust-first autonomous agent runtime"
   homepage "https://github.com/zeroclaw-labs/zeroclaw"
-  url "https://github.com/zeroclaw-labs/zeroclaw/archive/refs/tags/v0.6.5.tar.gz"
-  sha256 "04021c8b273f9dd9433ebfef55e79fd70600c4fc2e6de2f02cc4067dbe7149b3"
+  url "https://github.com/zeroclaw-labs/zeroclaw/archive/refs/tags/v0.6.7.tar.gz"
+  sha256 "54d62c4dde87475f003b0404df1d343e86526df103eaf2045f961b1921871a77"
   license any_of: ["Apache-2.0", "MIT"]
   head "https://github.com/zeroclaw-labs/zeroclaw.git", branch: "master"
 
@@ -16,6 +16,7 @@ class Zeroclaw < Formula
   end
 
   depends_on "rust" => :build
+  depends_on "node" => :build
 
   def install
     system "cargo", "install", *std_cargo_args
